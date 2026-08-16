@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="review.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>JSS</title>
+
+<style>
+/* Styles needed for submitted-review feedback without changing review.css */
+.user-submitted-review{border-color:#bcd9f3}
+.just-submitted{animation:reviewFlash 2.2s ease}
+@keyframes reviewFlash{0%,100%{box-shadow:0 8px 24px rgba(24,60,100,.06)}25%,65%{box-shadow:0 0 0 4px rgba(55,201,232,.2),0 15px 36px rgba(30,111,217,.18)}}
+.review-popup-overlay{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,19,38,.58);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:.2s}
+.review-popup-overlay.show{opacity:1;visibility:visible}
+.review-popup{position:relative;width:min(430px,100%);background:#fff;border-radius:20px;padding:36px 30px 30px;text-align:center;box-shadow:0 26px 75px rgba(5,29,55,.3);transform:translateY(10px) scale(.98);transition:.2s}
+.review-popup-overlay.show .review-popup{transform:translateY(0) scale(1)}
+.review-popup-close{position:absolute;top:13px;right:15px;width:34px;height:34px;border:0;border-radius:50%;background:#f1f5f9;color:#6a7b8e;font-size:22px;cursor:pointer}
+.review-popup-icon{width:64px;height:64px;margin:0 auto 17px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#e8f7f2;color:#1d9a67;font-size:25px}
+.review-popup h3{font-size:23px;color:#153d64;margin-bottom:9px}
+.review-popup p{font-size:13px;color:#6e7f93;line-height:1.65;margin-bottom:23px}
+.review-popup-action{border:0;background:#1d5ce0;color:#fff;border-radius:9px;padding:11px 23px;font-size:12.5px;font-weight:800;cursor:pointer}
+body.popup-open{overflow:hidden}
+</style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+    <div class="logo-placeholder">
+        <a href="/index.html" id="logo-link">
+        <img src="Assets/LOGO.png" alt="jobskillshare logo">
+        </a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="Programs.html">Programs</a></li>
+      <li><a href="Courses.html">Courses</a></li>
+      <li><a href="index.html#community">Community</a></li>
+      <li><a href="review.html">Reviews</a></li>
+    </ul>
+
+    <div class="nav-buttons">
+      <a href="https://www.jobskillshare.org/certificate-program/?ref=nosheen-saeed" class="btn-create js-open-signup">Create Account</a>
+      <a href="https://www.jobskillshare.org/certificate-program/?ref=nosheen-saeed" class="btn-login">Log In</a>
+    </div>
+  </nav>
+
+  <section class="reviews-hero">
+    <div class="reviews-hero-content">
+        <span class="reviews-badge">
+            <i class="fa-solid fa-star"></i>
+            Trusted by Thousands of Learners
+        </span>
+
+        <h1>Learner Reviews & Success Stories</h1>
+        <p>
+            Hear directly from learners who completed our programs,
+            courses and career pathways. Discover authentic experiences,
+            career transformations, and success stories from our growing
+            learning community.
+        </p>
+
+        <div class="reviews-stats">
+            <div class="stat-card">
+                <h2>⭐ 4.8</h2>
+                <span>Average Rating</span>
+            </div>
+            <div class="stat-card">
+                <h2>12,000+</h2>
+                <span>Verified Reviews</span>
+            </div>
+            <div class="stat-card">
+                <h2>95%</h2>
+                <span>Would Recommend</span>
+            </div>
+        </div>
+
+        <div class="hero-buttons">
+            <a href="#reviews" class="btn-primary">
+                Explore Reviews
+            </a>
+            <a href="#write-review" class="btn-secondary">
+                Write a Review
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="reviews-section" id="reviews">
+
+    <div class="reviews-container">
+<!--==============================
+        FILTER SIDEBAR
+===============================-->
+
+<aside class="reviews-sidebar">
+
+    <h2 class="filter-heading">Filters</h2>
+
+    <!-- Program -->
+
+    <div class="filter-box">
+
+        <div class="filter-title">
+            <span>Programs</span>
+          
+        </div>
+
+        <div class="filter-options" id="programFilters">
+
+            <label>
+                <input type="radio" name="program" value="all" checked>
+                All Programs
+            </label>
+
+            <label>
+                <input type="radio" name="program" value="IT Support">
+                IT Support
+            </label>
+
+            <label>
+                <input type="radio" name="program" value="CyberSecurity">
+                CyberSecurity
+            </label>
+
+            <label>
+                <input type="radio" name="program" value="Systems Engineer">
+                Systems Engineer
+            </label>
+
+            <label>
+                <input type="radio" name="program" value="Azure Cloud Engineer">
+                Azure Cloud Engineer
+            </label>
+
+            <label>
+                <input type="radio" name="program" value="AWS Cloud Engineer">
+                AWS Cloud Engineer
+            </label>
+
+            <label>
+                <input type="radio" name="program" value="Cisco Network Engineer">
+                Cisco Network Engineer
+            </label>
+
+            <label>
+                <input type="radio" name="program" value="IT Support Technician">
+                IT Support Technician
+            </label>
+        </div>
+    </div>
+
+    <!-- Rating -->
+
+<div class="filter-box">
+
+    <div class="filter-title">
+        <span>Rating</span>
+       
+    </div>
+
+    <div class="filter-options" id="ratingFilters">
+
+        <label>
+            <input type="radio" name="rating" value="0" checked>
+
+            <span class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </span>
+        </label>
+
+        <label>
+            <input type="radio" name="rating" value="4">
+
+            <span class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star inactive"></i>
+            </span>
+        </label>
+
+        <label>
+            <input type="radio" name="rating" value="3">
+
+            <span class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star inactive"></i>
+                <i class="far fa-star inactive"></i>
+            </span>
+        </label>
+
+        <label>
+            <input type="radio" name="rating" value="2">
+
+            <span class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star inactive"></i>
+                <i class="far fa-star inactive"></i>
+                <i class="far fa-star inactive"></i>
+            </span>
+        </label>
+
+        <label>
+            <input type="radio" name="rating" value="1">
+
+            <span class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="far fa-star inactive"></i>
+                <i class="far fa-star inactive"></i>
+                <i class="far fa-star inactive"></i>
+                <i class="far fa-star inactive"></i>
+            </span>
+        </label>
+
+    </div>
+
+
+    </div>
+    <button class="clear-filter-btn" id="clearFiltersBtn">
+        Clear Filters
+    </button>
+</aside>
+
+        <!-- Right Side -->
+    <div class="reviews-content">
+    <div class="selected-program">
+        <h3>Reviews for <span id="selectedProgramLabel">All Programs</span></h3>
+    </div>
+
+<div class="reviews-topbar">
+
+    <input
+        type="text"
+        id="reviewSearch"
+        placeholder="Search programs, courses or keywords...">
+
+    <div class="sort-dropdown">
+
+        <select id="reviewSort">
+
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+
+        </select>
+
+        <i class="fa-solid fa-chevron-down"></i>
+
+    </div>
+
+</div>
+
+<p class="no-results-msg" id="noResultsMsg" style="display:none;">
+    No reviews match your filters. Try adjusting your search or clearing filters.
+</p>
+
+<div class="reviews-grid" id="reviewsGrid">
+
+    <div class="review-card" data-program="IT Support" data-rating="5" data-date="2026-07">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">SA</div>
+                <div>
+                    <h4>Sarah Ahmed</h4>
+                    <span>Completed July 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>Google IT Support Certificate</h5>
+
+        <p>
+            Excellent instructors, practical labs and real-world
+            projects. Highly recommended for beginners.
+        </p>
+
+        <div class="review-tags">
+            <span>#ITSupport</span><span>#Google</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="IT Support" data-rating="5" data-date="2026-06">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">AK</div>
+                <div>
+                    <h4>Ali Khan</h4>
+                    <span>Completed June 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>Frontend Development</h5>
+
+        <p>
+            Loved the structured roadmap and hands-on
+            assignments. The projects helped me gain
+            practical frontend development skills.
+        </p>
+
+        <div class="review-tags">
+            <span>#HTML</span><span>#CSS</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="CyberSecurity" data-rating="4" data-date="2026-05">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">HM</div>
+                <div>
+                    <h4>Hina Malik</h4>
+                    <span>Completed May 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★☆</div>
+        </div>
+
+        <h5>Cybersecurity Pathway</h5>
+
+        <p>
+            Great labs, certification preparation and
+            real-world security exercises. Very informative
+            and beginner friendly.
+        </p>
+
+        <div class="review-tags">
+            <span>#Cybersecurity</span><span>#Networking</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="IT Support" data-rating="5" data-date="2026-06">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">AS</div>
+                <div>
+                    <h4>Ayesha Siddiqui</h4>
+                    <span>Completed June 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>IT Support: Active Directory and Tech Skills</h5>
+
+        <p>
+            I recommended
+        </p>
+
+        <div class="review-tags">
+            <span>#ActiveDirectory</span><span>#ITSupport</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="IT Support Technician" data-rating="5" data-date="2026-01">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">KI</div>
+                <div>
+                    <h4>Kashif Iqbal</h4>
+                    <span>Completed January 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>Modern IT Support Training: Part 2 | A+ (220-1101)</h5>
+
+        <p>
+            Best course in my life
+        </p>
+
+        <div class="review-tags">
+            <span>#ITSupport</span><span>#APlus</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="CyberSecurity" data-rating="5" data-date="2026-05">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">SM</div>
+                <div>
+                    <h4>Sana Malik</h4>
+                    <span>Completed May 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>Networking Fundamentals for Cybersecurity</h5>
+
+        <p>
+            Very informative and easy to follow. I learned useful concepts. Thank you!
+        </p>
+
+        <div class="review-tags">
+            <span>#Networking</span><span>#Cybersecurity</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="CyberSecurity" data-rating="5" data-date="2026-04">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">HT</div>
+                <div>
+                    <h4>Hamza Tariq</h4>
+                    <span>Completed April 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>Networking Fundamentals for Cybersecurity</h5>
+
+        <p>
+            Amazing content and interesting
+        </p>
+
+        <div class="review-tags">
+            <span>#Networking</span><span>#Cybersecurity</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="IT Support" data-rating="5" data-date="2026-04">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">FN</div>
+                <div>
+                    <h4>Fatima Noor</h4>
+                    <span>Completed April 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>IT Support: Active Directory and Tech Skills</h5>
+
+        <p>
+            It was well informative and understood the course.
+        </p>
+
+        <div class="review-tags">
+            <span>#ActiveDirectory</span><span>#ITSupport</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="CyberSecurity" data-rating="5" data-date="2026-03">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">UR</div>
+                <div>
+                    <h4>Usman Raza</h4>
+                    <span>Completed March 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>CompTIA Security+ Training (SY0-701) Part 1</h5>
+
+        <p>
+            Very Good course
+        </p>
+
+        <div class="review-tags">
+            <span>#CompTIA</span><span>#SecurityPlus</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="CyberSecurity" data-rating="5" data-date="2026-03">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">ZH</div>
+                <div>
+                    <h4>Zainab Hussain</h4>
+                    <span>Completed March 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>CompTIA Security+ Training (SY0-701) Part 1</h5>
+
+        <p>
+            The overall course was absolutely great! It was very informative and I
+            learnt a lot about security and it's architecture, it's operations,
+            threats and vulnerabilities and so many more. It was indeed a great
+            course which truly enlightened me.
+        </p>
+
+        <div class="review-tags">
+            <span>#CompTIA</span><span>#SecurityPlus</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="CyberSecurity" data-rating="5" data-date="2026-02">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">AY</div>
+                <div>
+                    <h4>Ahmed Yousaf</h4>
+                    <span>Completed February 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>CompTIA Security+ Training (SY0-701) Part 1</h5>
+
+        <p>
+            Great Cybersecurity course for beginners. The content was easy to
+            understand and very helpful for building cybersecurity knowledge
+        </p>
+
+        <div class="review-tags">
+            <span>#CompTIA</span><span>#SecurityPlus</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="CyberSecurity" data-rating="5" data-date="2026-02">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">MK</div>
+                <div>
+                    <h4>Mahnoor Khan</h4>
+                    <span>Completed February 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>Networking Fundamentals for Cybersecurity</h5>
+
+        <p>
+            Great free Cybersecurity course for beginners. The content was easy to
+            understand and very helpful for building cybersecurity knowledge
+        </p>
+
+        <div class="review-tags">
+            <span>#Networking</span><span>#Cybersecurity</span>
+        </div>
+    </div>
+
+    <div class="review-card" data-program="CyberSecurity" data-rating="5" data-date="2026-05">
+        <div class="review-header">
+            <div class="review-left">
+                <div class="review-avatar">BA</div>
+                <div>
+                    <h4>Bilal Ahmed</h4>
+                    <span>Completed May 2026</span>
+                </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+        </div>
+
+        <h5>CompTIA Security+ Training (SY0-701) Part 1</h5>
+
+        <p>
+            This course provided a clear and practical introduction to the CompTIA
+            Security+ SY0-701 objectives. The lessons were well organized, easy to
+            follow, and included useful real-world examples. The hands-on approach
+            helped reinforce the concepts, and I feel much more confident in my
+            understanding of cybersecurity fundamentals. I would recommend this
+            course to anyone preparing for the Security+ certification.
+        </p>
+
+        <div class="review-tags">
+            <span>#CompTIA</span><span>#SecurityPlus</span>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+ </div>
+</div>
+</section>
+
+<!--==================================
+        SUCCESS STORIES
+===================================-->
+
+<section class="success-stories">
+
+    <div class="success-container">
+
+        <div class="section-heading">
+
+            <span>Career Success</span>
+
+            <h2>Success Stories</h2>
+
+            <p>
+                Discover how our learners transformed their careers after
+                completing JobSkillShare programs.
+            </p>
+
+        </div>
+
+        <div class="stories-grid">
+
+            <!-- Story 1 -->
+
+            <div class="story-card">
+
+                <div class="story-avatar">👨‍💻</div>
+
+                <div class="story-content">
+
+                    <h3>Ahmed Khan</h3>
+
+                    <h4>CyberSecurity Certificate</h4>
+
+                    <div class="story-info">
+
+                        <span>💼 Security Analyst at XYZ</span>
+                        <span>📍 Islamabad</span>
+                        <span>⭐ Verified Graduate</span>
+
+                    </div>
+
+                    <div class="story-divider"></div>
+                    <p>
+                        Ahmed completed the CyberSecurity pathway and secured
+                        his first role as a Security Analyst at XYZ Company. The practical
+                        labs, projects, and certification preparation helped
+                        him confidently transition into the cybersecurity field.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Story 2 -->
+
+            <div class="story-card">
+
+                <div class="story-avatar">👩‍🎨</div>
+
+                <div class="story-content">
+
+                    <h3>Ayesha Malik</h3>
+
+                    <h4>UI/UX Design Certificate</h4>
+
+                    <div class="story-info">
+
+                        <span>💼 Product Designer at ABC</span>
+                        <span>📍 Lahore</span>
+                        <span>⭐ Verified Graduate</span>
+
+                    </div>
+                    <div class="story-divider"></div>
+                    <p>
+                        After completing the UI/UX Design program, Ayesha
+                        landed her first Product Designer role and now works on
+                        modern web and mobile experiences for international
+                        clients.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="write-review" id="write-review">
+
+    <div class="review-form-container">
+
+        <div class="section-heading">
+
+            <span>Share Your Experience</span>
+
+            <h2>Add Your Review</h2>
+
+            <p>
+                Help future learners by sharing your experience with
+                JobSkillShare programs and courses.
+            </p>
+
+        </div>
+
+        <form class="review-form" id="reviewForm">
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="reviewName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+<div class="form-group">
+
+    <label>Program or Course</label>
+
+    <div class="search-dropdown">
+
+        <input
+            type="text"
+            id="programSearch"
+            placeholder="Search a program or course..."
+            autocomplete="off"
+            required>
+
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+        <div class="dropdown-list" id="dropdownList">
+
+            <div class="dropdown-item">IT Support</div>
+            <div class="dropdown-item">Google IT Support</div>
+            <div class="dropdown-item">CyberSecurity</div>
+            <div class="dropdown-item">Systems Engineer</div>
+            <div class="dropdown-item">Azure Cloud Engineer</div>
+            <div class="dropdown-item">AWS Cloud Engineer</div>
+            <div class="dropdown-item">Cisco Network Engineer</div>
+            <div class="dropdown-item">IT Support Technician</div>
+
+            <div class="dropdown-item">AI for IT Professionals</div>
+            <div class="dropdown-item">Cloud Administrator</div>
+            <div class="dropdown-item">DevOps</div>
+            <div class="dropdown-item">Cisco</div>
+            <div class="dropdown-item">CompTIA</div>
+            <div class="dropdown-item">Freelancing</div>
+            <div class="dropdown-item">Microsoft 365</div>
+            <div class="dropdown-item">Network & System Administration</div>
+            <div class="dropdown-item">Power BI</div>
+            <div class="dropdown-item">PowerShell Basics</div>
+            <div class="dropdown-item">Python</div>
+            <div class="dropdown-item">Windows</div>
+
+        </div>
+
+    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="reviewEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+    <label>Rating</label>
+
+    <div class="rating-box" role="radiogroup" aria-label="Choose a star rating">
+
+        <i class="fa-regular fa-star star" data-value="1" role="radio" aria-checked="false" tabindex="0" aria-label="1 star"></i>
+        <i class="fa-regular fa-star star" data-value="2" role="radio" aria-checked="false" tabindex="0" aria-label="2 stars"></i>
+        <i class="fa-regular fa-star star" data-value="3" role="radio" aria-checked="false" tabindex="0" aria-label="3 stars"></i>
+        <i class="fa-regular fa-star star" data-value="4" role="radio" aria-checked="false" tabindex="0" aria-label="4 stars"></i>
+        <i class="fa-regular fa-star star" data-value="5" role="radio" aria-checked="false" tabindex="0" aria-label="5 stars"></i>
+
+    </div>
+
+</div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Your Review</label>
+
+                <textarea
+                    id="reviewText"
+                    rows="7"
+                    placeholder="Tell others about your learning experience..."
+                    required
+                ></textarea>
+
+            </div>
+
+            <button type="submit" class="submit-review">
+
+                Submit Review
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- Review submitted popup -->
+<div class="review-popup-overlay" id="reviewPopup" aria-hidden="true">
+  <div class="review-popup" role="dialog" aria-modal="true" aria-labelledby="reviewPopupTitle">
+    <button class="review-popup-close" id="reviewPopupClose" type="button" aria-label="Close">&times;</button>
+    <div class="review-popup-icon"><i class="fa-solid fa-check"></i></div>
+    <h3 id="reviewPopupTitle">Review Submitted!</h3>
+    <p>Thank you for sharing your experience. Your review has been added successfully.</p>
+    <button class="review-popup-action" id="viewSubmittedReview" type="button">View Review</button>
+  </div>
+</div>
+
+<!-- ================= Footer ================= -->
+<footer class="site-footer">
+    <div class="footer-top">
+
+        <div class="footer-brand">
+            <div class="footer-logo"><img src="/Assets/LOGO.png" alt="JobSkillShare Logo"></div>
+
+            <h3 class="footer-heading">Practical IT training for real-world careers</h3>
+
+            <p class="footer-desc">
+                Empowering careers through accessible, hands-on IT education. Join thousands of learners who have transformed their careers with us.
+            </p>
+            <div class="footer-socials">
+                <a href="#" class="social-icon" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8.3 18.5H5.6V9.8h2.7v8.7ZM7 8.7a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2Zm11.5 9.8h-2.7v-4.2c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2v4.3H10V9.8h2.6v1.2h.04c.36-.7 1.25-1.4 2.56-1.4 2.74 0 3.24 1.8 3.24 4.2v4.7Z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Discord">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.128 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03Z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-links-wrap">
+
+            <div class="footer-links">
+                <h4>Explore Learning</h4>
+                <a href="#">Certificate Programs</a>
+                <a href="#">Individual IT Courses</a>
+                <a href="#">Lab Catalog 2026</a>
+                <a href="#">Premium Membership</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Member Resources</h4>
+                <a href="#">Open My Learning</a>
+                <a href="#">Practice Labs</a>
+                <a href="#">Create an Account</a>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>
+                    <span class="contact-icon">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+                    </span>
+                    <span><strong>Headquarters</strong><br>15524 New Hampshire Ave<br>Silver Spring, MD 20905</span>
+                </p>
+                <p>
+                    <span class="contact-icon">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13Zm2.2.5 7.8 6.1L19.8 6H4.2Z"/></svg>
+                    </span>
+                    <span><strong>Helpdesk</strong><br>support@jobskillshare.org</span>
+                </p>
+                <p>
+                    <span class="contact-icon">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="3" width="16" height="18" rx="1"></rect>
+                            <line x1="7" y1="8" x2="17" y2="8"></line>
+                            <line x1="7" y1="12" x2="17" y2="12"></line>
+                            <line x1="7" y1="16" x2="13" y2="16"></line>
+                        </svg>
+                    </span>
+                    <span><strong>Business Inquiries</strong><br>sales@jobskillshare.org</span>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 JobSkillShare. All rights reserved.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </div>
+</footer>
+<script src="review.js"></script>
+</body>
+</html>
