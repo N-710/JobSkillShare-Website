@@ -284,7 +284,7 @@ button,input,select,textarea{font:inherit}
   z-index:2;
 
   width:min(1620px,calc(100% - 80px));
-  min-height:620px;
+  min-height:570px;
 
   margin:0 auto;
 
@@ -294,7 +294,11 @@ button,input,select,textarea{font:inherit}
 
   gap:70px;
 
-  padding:56px 40px 62px;
+  /* reduced top space */
+  padding:24px 40px 48px;
+
+  /* move everything slightly upward */
+  transform:translateY(-12px);
 }
 
 .course-hero-copy{
@@ -1701,7 +1705,7 @@ button,input,select,textarea{font:inherit}
   }
 
   .course-hero h1{
-    font-size:52px;
+    font-size:38px;
   }
 
   .course-layout{
@@ -2226,4 +2230,456 @@ button,input,select,textarea{font:inherit}
   .learner-review blockquote{
     font-size:14px;
   }
+}
+
+/* =========================================================
+   NETWORKING FUNDAMENTALS HERO VISUAL
+========================================================= */
+
+.network-visual {
+    position: relative;
+
+    width: 440px;
+    height: 440px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* CENTER */
+
+.network-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 5;
+}
+
+
+.network-shield {
+    width: 110px;
+    height: 110px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b315a,
+            #1e6fd9
+        );
+
+    color: #ffffff;
+
+    font-size: 50px;
+
+    box-shadow:
+        0 22px 45px
+        rgba(15, 75, 135, 0.22);
+}
+
+
+/* RINGS */
+
+.network-ring {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    border-radius: 50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+
+.ring-one {
+    width: 250px;
+    height: 250px;
+
+    border:
+        1px solid
+        rgba(46, 125, 225, 0.20);
+}
+
+
+.ring-two {
+    width: 380px;
+    height: 380px;
+
+    border:
+        1px dashed
+        rgba(46, 125, 225, 0.25);
+}
+
+
+/* NODES */
+
+.network-node {
+    position: absolute;
+
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #d8e8f6;
+
+    box-shadow:
+        0 14px 32px
+        rgba(25, 78, 125, 0.12);
+
+    z-index: 4;
+}
+
+
+.network-node span {
+    color: #16528d;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+
+/* NODE POSITIONS */
+
+.node-1 {
+    top: 8%;
+    left: 41%;
+}
+
+.node-2 {
+    top: 23%;
+    right: 5%;
+}
+
+.node-3 {
+    bottom: 21%;
+    right: 4%;
+}
+
+.node-4 {
+    bottom: 5%;
+    left: 42%;
+}
+
+.node-5 {
+    bottom: 21%;
+    left: 4%;
+}
+
+.node-6 {
+    top: 23%;
+    left: 5%;
+}
+
+
+/* CONNECTION LINES */
+
+.network-line {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 145px;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(46, 125, 225, 0.15),
+            rgba(46, 125, 225, 0.65)
+        );
+
+    transform-origin: left center;
+
+    z-index: 2;
+}
+
+
+.line-1 {
+    transform: rotate(-90deg);
+}
+
+.line-2 {
+    transform: rotate(-32deg);
+}
+
+.line-3 {
+    transform: rotate(30deg);
+}
+
+.line-4 {
+    transform: rotate(90deg);
+}
+
+.line-5 {
+    transform: rotate(150deg);
+}
+
+.line-6 {
+    transform: rotate(210deg);
+}
+
+
+/* SOFT DECORATIVE GLOW */
+
+.network-visual::before {
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(56, 144, 230, 0.16),
+            rgba(56, 144, 230, 0.03) 58%,
+            transparent 72%
+        );
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .network-visual {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   BOTTOM COURSE CTA
+========================================================= */
+
+.course-bottom-cta {
+  position: relative;
+  padding: 80px 0;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(64, 134, 214, 0.10), transparent 28%),
+    linear-gradient(135deg, #f4f9fd 0%, #edf6fc 50%, #f7fbfe 100%);
+  overflow: hidden;
+}
+
+
+/* subtle decorative glow */
+.course-bottom-cta::before {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  right: -100px;
+  top: -160px;
+  background: rgba(73, 144, 215, 0.07);
+  pointer-events: none;
+}
+
+
+.course-bottom-cta .section-shell {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+
+.course-bottom-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+
+  padding: 46px 52px;
+
+  background: #ffffff;
+
+  border: 1px solid #dceaf5;
+  border-radius: 24px;
+
+  box-shadow:
+    0 20px 50px rgba(27, 74, 116, 0.08);
+}
+
+
+/* LEFT CONTENT */
+.course-bottom-cta-inner > div {
+  max-width: 790px;
+}
+
+
+.course-bottom-cta .section-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 13px;
+
+  color: #1769d2;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+
+.course-bottom-cta h2 {
+  margin: 0 0 12px;
+
+  color: #123d63;
+
+  font-size: clamp(28px, 3vw, 39px);
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+
+.course-bottom-cta p {
+  margin: 0;
+
+  max-width: 760px;
+
+  color: #58738c;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   GET STARTED BUTTON
+========================================================= */
+
+.course-bottom-cta .btn-primary {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 170px;
+
+  padding: 15px 25px;
+
+  border-radius: 10px;
+
+  background: #0c65d8;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  border: 1px solid #0c65d8;
+
+  box-shadow:
+    0 8px 20px rgba(12, 101, 216, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.course-bottom-cta .btn-primary:hover {
+  background: #0957bd;
+  border-color: #0957bd;
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 25px rgba(12, 101, 216, 0.25);
+
+  text-decoration: none;
+}
+
+
+.course-bottom-cta .btn-primary:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .course-bottom-cta {
+    padding: 60px 0;
+  }
+
+  .course-bottom-cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 28px;
+
+    padding: 38px 34px;
+  }
+
+  .course-bottom-cta .btn-primary {
+    min-width: 160px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .course-bottom-cta {
+    padding: 45px 0;
+  }
+
+  .course-bottom-cta .section-shell {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .course-bottom-cta-inner {
+    padding: 30px 24px;
+    border-radius: 18px;
+  }
+
+  .course-bottom-cta h2 {
+    font-size: 27px;
+  }
+
+  .course-bottom-cta p {
+    font-size: 15px;
+  }
+
+  .course-bottom-cta .btn-primary {
+    width: 100%;
+  }
+
 }
