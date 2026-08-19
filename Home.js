@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ---- Program catalog: matches your actual Programs section ----
     const programCatalog = {
-        itSupport: { name: 'IT Support Certificate Program', href: 'programs.html#it-support' },
-        systemsEngineer: { name: 'Systems Engineer Certificate Program', href: 'programs.html#systems-engineer' },
-        cloudEngineer: { name: 'Cloud Engineer Certificate Program', href: 'programs.html#cloud-engineer' },
-        cybersecurity: { name: 'Cybersecurity Analyst Certificate Program', href: 'programs.html#cybersecurity' },
-        aiEngineering: { name: 'AI Engineering & Automation Certificate Program', href: 'programs.html#ai-engineering' },
-        freelancer: { name: 'Freelancer Certificate Program', href: 'programs.html#freelancer' }
+        itSupport: { name: 'IT Support Certificate Program', href: 'IT.html' },
+        systemsEngineer: { name: 'Systems Engineer Certificate Program', href: 'systems.html' },
+        cloudEngineer: { name: 'AWS Cloud Engineer Certificate Program', href: 'aws.html' },
+        cybersecurity: { name: 'Cybersecurity Analyst Certificate Program', href: 'cyber.html' },
+        aiEngineering: { name: 'AI Engineering & Automation Certificate Program', href: 'ai.html' },
+        freelancer: { name: 'Freelancer Certificate Program', href: 'freeLance.html' }
     };
 
     // ---- Scenario rules: keyword sets → explanation + program list + follow-up question ----
@@ -245,6 +245,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const helperSuggestion = document.getElementById("helperSuggestion");
     const helperTextarea = document.querySelector(".helper-textarea");
 
+    const helperResult = document.getElementById("helper-result");
+    const resultExplanation = document.getElementById("result-explanation");
+    const resultPrograms = document.getElementById("result-programs");
+    const resultFollowup = document.getElementById("result-followup");
+
     if (helperSuggestion && helperTextarea) {
 
         helperSuggestion.addEventListener("change", function () {
@@ -252,8 +257,15 @@ document.addEventListener("DOMContentLoaded", function () {
             if (this.value !== "") {
 
                 helperTextarea.value = this.value;
-
                 helperTextarea.focus();
+
+                // Hide previous results until Find My Learning Path is clicked
+                helperResult.classList.remove("active");
+
+                // Clear previous results
+                resultExplanation.textContent = "";
+                resultPrograms.innerHTML = "";
+                resultFollowup.textContent = "";
 
                 helperTextarea.scrollIntoView({
                     behavior: "smooth",
@@ -261,6 +273,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
             }
+
+        });
+
+        // Clear previous results when the user starts entering a new prompt
+        helperTextarea.addEventListener("input", function () {
+
+            helperResult.classList.remove("active");
+
+            resultExplanation.textContent = "";
+            resultPrograms.innerHTML = "";
+            resultFollowup.textContent = "";
+
         });
 
     }
