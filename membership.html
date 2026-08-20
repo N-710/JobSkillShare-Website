@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="membership.css">
+
+    <title>Membership Plans</title>
+</head>
+
+<body>
+
+<!-- ================= SIGNUP / MEMBERSHIP MODAL ================= -->
+
+<div class="sm-overlay" id="smOverlay">
+
+    <div class="sm-modal" id="smModal" role="dialog" aria-modal="true">
+
+       
+
+        <div class="sm-modal-inner">
+
+            <!-- ===== Shared Header ===== -->
+
+            <div class="sm-header">
+
+                <span class="sm-eyebrow">
+                    JOIN JOBSKILLSHARE
+                </span>
+
+                <h2 class="sm-title" id="smTitle">
+                    Choose how you want to learn
+                </h2>
+
+                <p class="sm-subtitle" id="smSubtitle">
+                    Create your account here. Membership and payment processing
+                    remain securely managed by
+                    <span class="sm-stripe-badge">✓ Stripe</span>.
+                </p>
+
+            </div>
+
+
+            <!-- ===== Plan Bar ===== -->
+
+            <div class="sm-planbar" id="smPlanBar" style="display:none;">
+
+                <button class="sm-changeplan" id="smChangePlan">
+                    ← Change plan
+                </button>
+
+                <span class="sm-planbar-price" id="smPlanBarPrice">
+                    Free Access - $0.00
+                </span>
+
+            </div>
+
+
+            <!-- ===== Step Indicator — FREE ===== -->
+
+            <div class="sm-stepper" id="smStepperFree" style="display:none;">
+
+                <div class="sm-step" data-step-target="account">
+
+                    <span class="sm-step-circle">1</span>
+
+                    <span class="sm-step-label">
+                        Account
+                    </span>
+
+                </div>
+
+                <div class="sm-step-line"></div>
+
+                <div class="sm-step" data-step-target="about">
+
+                    <span class="sm-step-circle">2</span>
+
+                    <span class="sm-step-label">
+                        About You
+                    </span>
+
+                </div>
+
+                <div class="sm-step-line"></div>
+
+                <div class="sm-step" data-step-target="review">
+
+                    <span class="sm-step-circle">3</span>
+
+                    <span class="sm-step-label">
+                        Complete
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== Step Indicator — PAID ===== -->
+
+            <div class="sm-stepper" id="smStepperPaid" style="display:none;">
+
+                <div class="sm-step" data-step-target="account">
+
+                    <span class="sm-step-circle">1</span>
+
+                    <span class="sm-step-label">
+                        Account
+                    </span>
+
+                </div>
+
+                <div class="sm-step-line"></div>
+
+                <div class="sm-step" data-step-target="about">
+
+                    <span class="sm-step-circle">2</span>
+
+                    <span class="sm-step-label">
+                        Additional Info
+                    </span>
+
+                </div>
+
+                <div class="sm-step-line"></div>
+
+                <div class="sm-step" data-step-target="payment">
+
+                    <span class="sm-step-circle">3</span>
+
+                    <span class="sm-step-label">
+                        Payment
+                    </span>
+
+                </div>
+
+                <div class="sm-step-line"></div>
+
+                <div class="sm-step" data-step-target="review">
+
+                    <span class="sm-step-circle">4</span>
+
+                    <span class="sm-step-label">
+                        Complete
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= SCREEN 0: PLAN SELECTION ================= -->
+
+            <div class="sm-screen" id="smScreenPlans">
+
+                <div class="sm-plans-grid">
+
+
+                    <!-- ================= FREE PLAN ================= -->
+
+                    <div class="sm-plan-card" data-plan="free">
+
+                        <span class="sm-plan-badge">
+                            START FREE
+                        </span>
+
+                        <h3 class="sm-plan-name">
+                            Free Access
+                        </h3>
+
+                        <div class="sm-plan-price-row">
+
+                            <span class="sm-plan-price">
+                                $0.00
+                            </span>
+
+                            <span class="sm-plan-period">
+                                3-month access
+                            </span>
+
+                        </div>
+
+                        <div class="sm-plan-divider"></div>
+
+                        <p class="sm-plan-desc">
+                            Explore selected foundation Courses for three months.
+                        </p>
+
+                        <ul class="sm-plan-features">
+
+                            <li>
+                                ✓ Selected free Courses
+                            </li>
+
+                            <li>
+                                ✓ Learning portal access
+                            </li>
+
+                            <li>
+                                ✓ Progress tracking
+                            </li>
+
+                        </ul>
+
+
+                        <!-- NAVIGATE TO REAL MEMBERSHIP PAGE -->
+
+                        <button
+                            class="sm-plan-btn"
+                            data-select-plan="free"
+                            data-price="$0.00"
+                            data-label="Free Access"
+                            onclick="window.location.href='https://www.jobskillshare.org/membership#/membership'">
+
+                            Create Free Account
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- ================= MONTHLY PLAN ================= -->
+
+                    <div class="sm-plan-card" data-plan="monthly">
+
+                        <span class="sm-plan-badge sm-plan-badge-flex">
+                            FLEXIBLE
+                        </span>
+
+                        <h3 class="sm-plan-name">
+                            Premium Monthly
+                        </h3>
+
+                        <div class="sm-plan-price-row">
+
+                            <span class="sm-plan-price">
+                                $50.00
+                            </span>
+
+                            <span class="sm-plan-period">
+                                per month
+                            </span>
+
+                        </div>
+
+                        <div class="sm-plan-divider"></div>
+
+                        <p class="sm-plan-desc">
+                            Full learning access with monthly billing.
+                        </p>
+
+                        <ul class="sm-plan-features">
+
+                            <li>
+                                ✓ All Certificate Programs
+                            </li>
+
+                            <li>
+                                ✓ All premium Courses
+                            </li>
+
+                            <li>
+                                ✓ Hands-on Labs and certificates
+                            </li>
+
+                            <li>
+                                ✓ AI Career Tools
+                            </li>
+
+                        </ul>
+
+
+                        <!-- NAVIGATE TO REAL MEMBERSHIP PAGE -->
+
+                        <button
+                            class="sm-plan-btn"
+                            data-select-plan="monthly"
+                            data-price="$50.00/month"
+                            data-label="Premium Monthly"
+                            onclick="window.location.href='https://www.jobskillshare.org/membership#/membership'">
+
+                            Choose Premium Monthly
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- ================= YEARLY PLAN ================= -->
+
+                    <div
+                        class="sm-plan-card sm-plan-card-highlight"
+                        data-plan="yearly">
+
+                        <span class="sm-plan-badge sm-plan-badge-best">
+                            BEST VALUE
+                        </span>
+
+                        <span class="sm-plan-save-badge">
+                            Save $51
+                        </span>
+
+                        <h3 class="sm-plan-name">
+                            Premium Yearly
+                        </h3>
+
+                        <div class="sm-plan-price-row">
+
+                            <span class="sm-plan-price">
+                                $549.00
+                            </span>
+
+                            <span class="sm-plan-period">
+                                per year
+                            </span>
+
+                        </div>
+
+                        <div class="sm-plan-divider"></div>
+
+                        <p class="sm-plan-desc">
+                            Build long-term skills with yearly Premium access.
+                        </p>
+
+                        <ul class="sm-plan-features">
+
+                            <li>
+                                ✓ All Certificate Programs
+                            </li>
+
+                            <li>
+                                ✓ All premium Courses
+                            </li>
+
+                            <li>
+                                ✓ Hands-on Labs and certificates
+                            </li>
+
+                            <li>
+                                ✓ AI Career Tools
+                            </li>
+
+                        </ul>
+
+
+                        <!-- NAVIGATE TO REAL MEMBERSHIP PAGE -->
+
+                        <button
+                            class="sm-plan-btn"
+                            data-select-plan="yearly"
+                            data-price="$549.00/year"
+                            data-label="Premium Yearly"
+                            onclick="window.location.href='https://www.jobskillshare.org/membership#/membership'">
+
+                            Choose Premium Yearly
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= TRUST BAR ================= -->
+
+                <div class="sm-trustbar">
+
+                    <span>
+                        ✓ 12,000+ Active Learners
+                    </span>
+
+                    <span>
+                        ✓ Stripe Protected
+                    </span>
+
+                    <span>
+                        ✓ Secure Registration
+                    </span>
+
+                    <span>
+                        ✓ Cancel Anytime
+                    </span>
+
+                    <span>
+                        ✓ Instant Access
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ==========================================
+       ORIGINAL JOBSKILLSHARE MEMBERSHIP PAGE
+    ========================================== */
+
+    const MEMBERSHIP_URL =
+        'https://www.jobskillshare.org/membership#/membership';
+
+
+    /* ==========================================
+       MEMBERSHIP PLAN BUTTONS
+    ========================================== */
+
+    const planButtons =
+        document.querySelectorAll('.sm-plan-btn');
+
+
+    planButtons.forEach(function (button) {
+
+        button.addEventListener('click', function (event) {
+
+            event.preventDefault();
+
+            /*
+             * Navigate directly to the ORIGINAL
+             * JobSkillShare membership page.
+             *
+             * The #/membership hash is included so
+             * the original website can open its
+             * membership section/modal.
+             */
+
+            window.location.href = MEMBERSHIP_URL;
+
+        });
+
+    });
+
+
+    /* ==========================================
+       OPTIONAL: PLAN CARD CLICK
+       If you want ONLY the buttons clickable,
+       leave this section commented.
+    ========================================== */
+
+    /*
+    document.querySelectorAll('.sm-plan-card').forEach(function (card) {
+
+        card.addEventListener('click', function (event) {
+
+            if (event.target.closest('.sm-plan-btn')) {
+                return;
+            }
+
+            window.location.href = MEMBERSHIP_URL;
+
+        });
+
+    });
+    */
+
+    
+
+
+});
+</script>
+
+</body>
+
+</html>

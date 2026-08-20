@@ -289,4 +289,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
+    function checkMembershipRedirect() {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('openMembership') === 'true') {
+        openModal();
+
+        // Remove the parameter after opening the modal
+        window.history.replaceState(
+            {},
+            '',
+            window.location.pathname
+        );
+    }
+}
 });
