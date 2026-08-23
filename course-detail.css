@@ -74,30 +74,33 @@ button,input,select,textarea{font:inherit}
 .navbar.scrolled{
   box-shadow:0 5px 18px rgba(7,34,64,.08);
 }
+.logo-placeholder {
+    width: 220px;
+    height: 76px;
+    flex-shrink: 0;
 
-.logo-placeholder{
-  width:220px;
-  height:100%;
-  max-height:76px;
-  flex-shrink:0;
+    display: flex;
+    align-items: center;
 
-  display:flex;
-  align-items:center;
-
-  padding:6px 0;
+    padding: 0;
 }
 
-.logo-placeholder a{
-  display:flex;
-  align-items:center;
+.logo-placeholder a {
+    display: flex;
+    align-items: center;
 }
 
-.logo-placeholder img{
-  width:auto;
-  max-width:190px;
-  max-height:72px;
-  object-fit:contain;
+.logo-placeholder img {
+    width: auto;
+    height: auto;
+
+    max-width: 220px;
+    max-height: 130px;
+
+    object-fit: contain;
+    display: block;
 }
+
 
 .nav-links{
   list-style:none;
@@ -1702,6 +1705,7 @@ button,input,select,textarea{font:inherit}
 
     padding-left:10px;
     padding-right:10px;
+    padding-bottom: 10px;
   }
 
   .course-hero h1{
@@ -1795,7 +1799,7 @@ button,input,select,textarea{font:inherit}
 
     grid-template-columns:1fr;
 
-    padding:44px 24px 50px;
+    padding:44px 24px 10px;
   }
 
   .course-hero-copy{
@@ -1880,7 +1884,7 @@ button,input,select,textarea{font:inherit}
 @media(max-width:640px){
 
   .course-hero-inner{
-    padding:38px 17px 42px;
+    padding:38px 17px 20px;
   }
 
   .hero-kickers{
@@ -1979,7 +1983,7 @@ button,input,select,textarea{font:inherit}
   }
 
   .course-layout{
-    padding-bottom:40px;
+   
 
     gap:16px;
   }
@@ -2681,5 +2685,313 @@ button,input,select,textarea{font:inherit}
   .course-bottom-cta .btn-primary {
     width: 100%;
   }
+
+}
+
+/* =========================================================
+   MOBILE NAVBAR
+========================================================= */
+
+.menu-toggle {
+    display: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        position: sticky !important;
+        position: -webkit-sticky !important;
+
+        top: 0 !important;
+
+        width: 100%;
+        height: 72px;
+
+        z-index: 99999;
+
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 0;
+
+        padding: 8px 18px;
+
+        background: #ffffff;
+
+        border-bottom: 1px solid #e5e5e5;
+
+        box-shadow:
+            0 2px 10px
+            rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* =====================================================
+       MOBILE LOGO
+    ===================================================== */
+
+    .navbar .logo-placeholder {
+        width: auto;
+        height: 56px;
+
+        padding: 0;
+
+        display: flex;
+        align-items: center;
+
+        flex-shrink: 1;
+    }
+
+    .logo-placeholder img {
+        width: auto;
+
+        max-width: 125px;
+        max-height: 48px;
+
+        object-fit: contain;
+    }
+
+
+    /* =====================================================
+       HIDE DESKTOP NAV LINKS
+    ===================================================== */
+
+    .navbar .nav-links {
+
+        position: absolute;
+
+        top: 72px;
+        left: 0;
+
+        width: 100%;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px 0;
+
+        margin: 0;
+
+        background: #ffffff;
+
+        border-top: 1px solid #e5e5e5;
+
+        box-shadow:
+            0 8px 15px
+            rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* When menu is opened */
+
+    .navbar .nav-links.active {
+        display: flex;
+    }
+
+
+    .navbar .nav-links li {
+
+        width: 100%;
+
+        min-height: auto;
+
+        display: block;
+    }
+
+
+    .navbar .nav-links li a {
+
+        display: block;
+
+        width: 100%;
+
+        padding: 14px 24px;
+
+        font-size: 14px;
+    }
+
+
+    .navbar .nav-links li a::after {
+        display: none;
+    }
+
+
+    /* =====================================================
+       MOBILE BUTTONS
+    ===================================================== */
+
+    .navbar .nav-buttons {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        margin-left: auto;
+
+        min-height: auto;
+    }
+
+
+    .navbar .btn-login,
+    .navbar .btn-create {
+
+        white-space: nowrap;
+
+        font-size: 13px;
+
+        padding: 10px 14px;
+
+        border-radius: 6px;
+    }
+
+
+    /* =====================================================
+       HAMBURGER
+    ===================================================== */
+
+    .menu-toggle {
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        gap: 5px;
+
+        width: 42px;
+        height: 42px;
+
+        margin-left: 8px;
+
+        padding: 0;
+
+        background: transparent;
+
+        border: none;
+
+        cursor: pointer;
+
+        flex-shrink: 0;
+    }
+
+
+    .menu-toggle span {
+
+        display: block;
+
+        width: 30px;
+        height: 3px;
+
+        background-color: #111827;
+
+        border-radius: 3px;
+
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+    }
+
+
+    /* =====================================================
+       HAMBURGER → X
+    ===================================================== */
+
+    .menu-toggle.active span:nth-child(1) {
+
+        transform:
+            translateY(8px)
+            rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+
+        transform:
+            translateY(-8px)
+            rotate(-45deg);
+    }
+
+}
+
+/* =========================================
+   HIDE HERO IMAGE / VISUAL ON MOBILE
+========================================= */
+@media (max-width: 768px) {
+
+    .course-hero-visual {
+        display: none !important;
+    }
+
+}
+
+/* =========================================================
+   REMOVE EXTRA SPACE AFTER FAQ ON MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .course-layout {
+        padding-bottom: 10px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .course-main {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    #faq,
+    .faq-section,
+    .faq-list {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        min-height: 0 !important;
+        height: auto !important;
+    }
+
+    .content-card:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .logo-placeholder {
+        width: auto;
+        height: 52px;
+        max-height: 52px;
+        padding: 0;
+    }
+
+    .logo-placeholder img {
+        width: 130px;
+        max-width: 130px;
+        height: auto;
+        max-height: 52px;
+        object-fit: contain;
+    }
 
 }

@@ -25,6 +25,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
+     MOBILE NAVBAR
+  ======================================================= */
+
+  const menuToggle =
+    document.getElementById("menu-toggle");
+
+  const navLinks =
+    document.getElementById("nav-links");
+
+  if (menuToggle && navLinks) {
+
+    menuToggle.addEventListener(
+      "click",
+      function () {
+
+        const isOpen =
+          navLinks.classList.toggle("active");
+
+        menuToggle.classList.toggle("active");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          isOpen ? "true" : "false"
+        );
+
+      }
+    );
+
+
+    /* Close mobile menu after clicking a link */
+
+    navLinks
+      .querySelectorAll("a")
+      .forEach(function (link) {
+
+        link.addEventListener(
+          "click",
+          function () {
+
+            navLinks.classList.remove("active");
+
+            menuToggle.classList.remove("active");
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          }
+        );
+
+      });
+
+  }
+
+
+  /* =======================================================
      CURRICULUM ACCORDION
   ======================================================= */
 
@@ -279,7 +336,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .clientX;
 
       },
-      { passive: true }
+      {
+        passive: true
+      }
     );
 
 
@@ -339,7 +398,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
       },
-      { passive: true }
+      {
+        passive: true
+      }
     );
 
   }

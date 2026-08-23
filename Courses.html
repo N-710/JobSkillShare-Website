@@ -12,25 +12,51 @@
 </head>
 <body>
 
-  <nav class="navbar" id="navbar">
-  <div class="logo-placeholder">
-    <a href="index.html">
-        <img src="images/LOGO.png" alt="JobSkillShare Logo">
-    </a>
-</div>
+<nav class="navbar" id="navbar">
 
-    <ul class="nav-links">
-      <li><a href="Programs.html">Programs</a></li>
-      <li><a href="Courses.html">Courses</a></li>
-      <li><a href="index.html#community">Community</a></li>
-      <li><a href="review.html">Reviews</a></li>
+    <!-- Logo -->
+    <div class="logo-placeholder">
+        <a href="index.html" id="logo-link">
+            <img src="images/LOGO.png" alt="JobSkillShare Logo">
+        </a>
+    </div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links" id="nav-links">
+        <li><a href="Programs.html">Programs</a></li>
+        <li><a href="Courses.html">Courses</a></li>
+        <li><a href="index.html#community">Community</a></li>
+        <li><a href="review.html">Reviews</a></li>
     </ul>
 
+    <!-- Buttons -->
     <div class="nav-buttons">
-      <a href="https://www.jobskillshare.org/certificate-program/?ref=nosheen-saeed#individual-courses" class="btn-create">Create Account</a>
-      <a href="https://www.jobskillshare.org/certificate-program/?ref=nosheen-saeed#individual-courses" class="btn-login">Log In</a>
+
+        <a href="https://www.jobskillshare.org/?ref=nosheen-saeed#/membership"
+           class="btn-login">
+            Log In
+        </a>
+
+        <a href="https://www.jobskillshare.org/?ref=nosheen-saeed#/membership"
+           class="btn-create">
+            Create Account
+        </a>
+
     </div>
-  </nav>
+
+    <!-- Mobile Hamburger -->
+    <button class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+</nav>
 
   <!-- Breadcrumb -->
   <div class="breadcrumb">
@@ -54,7 +80,7 @@
 
         <div class="page-hero-buttons">
           <a href=".courses-page-section" class="btn-primary-solid">Explore Courses</a>
-          <a href="https://www.jobskillshare.org/certificate-program/?ref=nosheen-saeed#individual-courses" class="btn-white-outline">Explore Membership</a>
+          <a href="https://www.jobskillshare.org/?ref=nosheen-saeed#/membership" class="btn-white-outline">Explore Membership</a>
          
         </div>
       </div>
@@ -108,16 +134,24 @@
             <input type="text" id="course-search" class="cp-search-input" placeholder="Search by Course, skill, or technology">
         </div>
 
-        <div class="cp-sort-wrap">
-            <label for="course-sort" class="cp-sort-label">Sort by</label>
-            <select id="course-sort" class="cp-sort-select">
-                <option value="all">All Courses</option>
-                <option value="newest">Newest</option>
-                <option value="popular">Popular</option>
-                <option value="free">Free</option>
-            </select>
+<div class="cp-sort-wrap">
+    <label class="cp-sort-label">Sort by</label>
+
+    <div class="custom-sort" id="customSort">
+        <button type="button" class="custom-sort-button" id="customSortButton">
+            <span id="customSortText">All Courses</span>
+            <span class="custom-sort-arrow">⌄</span>
+        </button>
+
+        <div class="custom-sort-menu" id="customSortMenu">
+            <button type="button" data-value="all">All Courses</button>
+            <button type="button" data-value="newest">Newest</button>
+            <button type="button" data-value="popular">Popular</button>
+            <button type="button" data-value="free">Free</button>
         </div>
     </div>
+</div>
+</div>
 
     <!-- Course cards grid goes here -->
      <div class="courses-page-grid" id="courses-page-grid">
@@ -1309,7 +1343,7 @@
 
         </div>
 
-        <a href="https://www.jobskillshare.org/certificate-program/?ref=nosheen-saeed#individual-courses" class="pb-cta">Explore Premium Membership <span>→</span></a>
+        <a href="https://www.jobskillshare.org/?ref=nosheen-saeed#/membership" class="pb-cta">Explore Premium Membership <span>→</span></a>
 
     </div>
 </section>
@@ -1412,246 +1446,767 @@
     </div>
 </footer>
 
-
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const grid = document.getElementById('courses-page-grid');
-    const cards = Array.from(grid.querySelectorAll('.course-page-card'));
-    const searchInput = document.getElementById('course-search');
-    const sortSelect = document.getElementById('course-sort');
+document.addEventListener("DOMContentLoaded", function () {
 
-    // "No results" message, inserted right after the grid
-    const noResults = document.createElement('div');
-    noResults.className = 'cp-no-results';
-    noResults.textContent = 'No courses found. Try a different search term.';
-    grid.insertAdjacentElement('afterend', noResults);
+    /* =========================================================
+       COURSE SEARCH + CUSTOM SORT / FILTER
+    ========================================================= */
 
-    // Precompute searchable/sortable data for each card
-    cards.forEach((card, i) => {
-        card.dataset.order = i;
+    const grid = document.getElementById("courses-page-grid");
+    const searchInput = document.getElementById("course-search");
 
-        const title = card.querySelector('.cpc-title')?.textContent || '';
-        const desc = card.querySelector('.cpc-desc')?.textContent || '';
-        const tags = Array.from(card.querySelectorAll('.cpc-tag')).map(t => t.textContent).join(' ');
-        card.dataset.searchText = (title + ' ' + desc + ' ' + tags).toLowerCase();
+    const customSort = document.getElementById("customSort");
+    const customSortButton = document.getElementById("customSortButton");
+    const customSortText = document.getElementById("customSortText");
+    const customSortOptions = document.querySelectorAll(
+        ".custom-sort-menu button"
+    );
 
-        card.dataset.free = card.querySelector('.cpc-badge-free') ? 'true' : 'false';
+    let currentSort = "all";
 
-        const lessonText = card.querySelector('.cpc-stat-text')?.textContent || '';
-        const lessonMatch = lessonText.match(/\d+/);
-        card.dataset.lessons = lessonMatch ? lessonMatch[0] : 0;
-    });
 
-    function applyFilters() {
-        const query = searchInput.value.trim().toLowerCase();
-        const sortVal = sortSelect.value;
+    if (grid) {
 
-        let visible = cards.filter(card => {
-            const matchesSearch = query === '' || card.dataset.searchText.includes(query);
-            const matchesFree = sortVal !== 'free' || card.dataset.free === 'true';
-            return matchesSearch && matchesFree;
+        const cards = Array.from(
+            grid.querySelectorAll(".course-page-card")
+        );
+
+
+        /* -----------------------------------------
+           NO RESULTS MESSAGE
+        ----------------------------------------- */
+
+        const noResults = document.createElement("div");
+
+        noResults.className = "cp-no-results";
+
+        noResults.textContent =
+            "No courses found. Try a different search term.";
+
+        noResults.style.display = "none";
+
+        grid.insertAdjacentElement(
+            "afterend",
+            noResults
+        );
+
+
+        /* -----------------------------------------
+           PREPARE COURSE DATA
+        ----------------------------------------- */
+
+        cards.forEach(function (card, index) {
+
+            card.dataset.order = index;
+
+
+            /* Searchable text */
+
+            const title =
+                card.querySelector(".cpc-title")
+                    ?.textContent || "";
+
+            const desc =
+                card.querySelector(".cpc-desc")
+                    ?.textContent || "";
+
+            const tags = Array.from(
+                card.querySelectorAll(".cpc-tag")
+            )
+                .map(function (tag) {
+                    return tag.textContent;
+                })
+                .join(" ");
+
+
+            card.dataset.searchText =
+                (
+                    title +
+                    " " +
+                    desc +
+                    " " +
+                    tags
+                ).toLowerCase();
+
+
+            /* FREE COURSE */
+
+            card.dataset.free =
+                card.querySelector(".cpc-badge-free")
+                    ? "true"
+                    : "false";
+
+
+            /* NEW VERSION */
+
+            card.dataset.new =
+                card.querySelector(".cpc-badge-new")
+                    ? "true"
+                    : "false";
+
+
+            /* Lesson count */
+
+            const stats = Array.from(
+                card.querySelectorAll(".cpc-stat-text")
+            );
+
+            let lessons = 0;
+
+            stats.forEach(function (stat) {
+
+                const text =
+                    stat.textContent.toLowerCase();
+
+                if (text.includes("lesson")) {
+
+                    const match =
+                        text.match(/\d+/);
+
+                    if (match) {
+                        lessons =
+                            parseInt(match[0], 10);
+                    }
+
+                }
+
+            });
+
+            card.dataset.lessons = lessons;
+
         });
 
-        if (sortVal === 'newest') {
-            visible.sort((a, b) => b.dataset.order - a.dataset.order);
-        } else if (sortVal === 'popular') {
-            visible.sort((a, b) => b.dataset.lessons - a.dataset.lessons);
-        } else {
-            visible.sort((a, b) => a.dataset.order - b.dataset.order);
+
+        /* =====================================================
+           APPLY SEARCH / FILTER / SORT
+        ===================================================== */
+
+        function applyFilters() {
+
+            const query =
+                searchInput
+                    ? searchInput.value
+                        .trim()
+                        .toLowerCase()
+                    : "";
+
+
+            let visibleCards =
+                cards.filter(function (card) {
+
+                    /* Search */
+
+                    const matchesSearch =
+                        query === "" ||
+                        card.dataset.searchText
+                            .includes(query);
+
+
+                    /* Free */
+
+                    const matchesFree =
+                        currentSort !== "free" ||
+                        card.dataset.free === "true";
+
+
+                    return (
+                        matchesSearch &&
+                        matchesFree
+                    );
+
+                });
+
+
+            /* -----------------------------------------
+               NEWEST
+               New Version courses first,
+               then newer HTML order
+            ----------------------------------------- */
+
+            if (currentSort === "newest") {
+
+                visibleCards.sort(
+                    function (a, b) {
+
+                        const aNew =
+                            a.dataset.new === "true"
+                                ? 1
+                                : 0;
+
+                        const bNew =
+                            b.dataset.new === "true"
+                                ? 1
+                                : 0;
+
+
+                        if (aNew !== bNew) {
+
+                            return bNew - aNew;
+
+                        }
+
+
+                        return (
+                            Number(b.dataset.order) -
+                            Number(a.dataset.order)
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /* -----------------------------------------
+               POPULAR
+               Courses with most lessons first
+            ----------------------------------------- */
+
+            else if (
+                currentSort === "popular"
+            ) {
+
+                visibleCards.sort(
+                    function (a, b) {
+
+                        return (
+                            Number(
+                                b.dataset.lessons
+                            ) -
+                            Number(
+                                a.dataset.lessons
+                            )
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /* -----------------------------------------
+               ALL / FREE
+               Keep original course order
+            ----------------------------------------- */
+
+            else {
+
+                visibleCards.sort(
+                    function (a, b) {
+
+                        return (
+                            Number(
+                                a.dataset.order
+                            ) -
+                            Number(
+                                b.dataset.order
+                            )
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /* -----------------------------------------
+               HIDE EVERYTHING FIRST
+            ----------------------------------------- */
+
+            cards.forEach(function (card) {
+
+                card.style.display = "none";
+
+            });
+
+
+            /* -----------------------------------------
+               SHOW FILTERED CARDS
+            ----------------------------------------- */
+
+            visibleCards.forEach(
+                function (card) {
+
+                    card.style.display = "";
+
+                    grid.appendChild(card);
+
+                }
+            );
+
+
+            /* -----------------------------------------
+               NO RESULTS
+            ----------------------------------------- */
+
+            if (visibleCards.length > 0) {
+
+                grid.style.display = "grid";
+
+                noResults.style.display =
+                    "none";
+
+            }
+            else {
+
+                grid.style.display = "none";
+
+                noResults.style.display =
+                    "block";
+
+            }
+
         }
 
-        cards.forEach(card => { card.style.display = 'none'; });
-        visible.forEach(card => {
-            card.style.display = '';
-            grid.appendChild(card);
-        });
 
-        const hasResults = visible.length > 0;
-        grid.style.display = hasResults ? 'grid' : 'none';
-        noResults.style.display = hasResults ? 'none' : 'block';
-    }
+        /* =====================================================
+           SEARCH INPUT
+        ===================================================== */
 
-    searchInput.addEventListener('input', applyFilters);
-    sortSelect.addEventListener('change', applyFilters);
-});
+        if (searchInput) {
 
-
-
-/* =========================================================
-   MOBILE REVIEW SLIDER
-========================================================= */
-
-const reviewSlider =
-    document.querySelector(".ls-grid");
-
-const reviewSlides =
-    document.querySelectorAll(".ls-grid .ls-item");
-
-const reviewDots =
-    document.querySelectorAll(".ls-slider-dot");
-
-let currentReview =
-    0;
-
-
-function showReview(index) {
-
-    currentReview =
-        index;
-
-
-    if (
-        window.innerWidth <= 900
-    ) {
-
-        reviewSlider.style.transform =
-            `translateX(-${index * 100}%)`;
-
-    }
-    else {
-
-        reviewSlider.style.transform =
-            "";
-
-    }
-
-
-    reviewDots.forEach(
-        function (dot, i) {
-
-            dot.classList.toggle(
-                "active",
-                i === index
+            searchInput.addEventListener(
+                "input",
+                applyFilters
             );
 
         }
-    );
-
-}
 
 
-/* Dot clicks */
+        /* =====================================================
+           CUSTOM SORT DROPDOWN
+        ===================================================== */
 
-reviewDots.forEach(
-    function (dot, index) {
+        if (
+            customSort &&
+            customSortButton
+        ) {
 
-        dot.addEventListener(
-            "click",
+            customSortButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.stopPropagation();
+
+                    customSort.classList.toggle(
+                        "open"
+                    );
+
+                }
+            );
+
+
+            customSortOptions.forEach(
+                function (option) {
+
+                    option.addEventListener(
+                        "click",
+                        function (event) {
+
+                            event.stopPropagation();
+
+
+                            /* Get selected value */
+
+                            currentSort =
+                                this.dataset.value;
+
+
+                            /* Update visible text */
+
+                            if (customSortText) {
+
+                                customSortText.textContent =
+                                    this.textContent.trim();
+
+                            }
+
+
+                            /* Remove old active */
+
+                            customSortOptions.forEach(
+                                function (item) {
+
+                                    item.classList.remove(
+                                        "active"
+                                    );
+
+                                }
+                            );
+
+
+                            /* Active selected option */
+
+                            this.classList.add(
+                                "active"
+                            );
+
+
+                            /* Close menu */
+
+                            customSort.classList.remove(
+                                "open"
+                            );
+
+
+                            /* APPLY FILTER */
+
+                            applyFilters();
+
+                        }
+                    );
+
+                }
+            );
+
+
+            /* Close dropdown when clicking outside */
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !customSort.contains(
+                            event.target
+                        )
+                    ) {
+
+                        customSort.classList.remove(
+                            "open"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* Initial display */
+
+        applyFilters();
+
+    }
+
+
+
+    /* =========================================================
+       MOBILE REVIEW SLIDER
+    ========================================================= */
+
+    const reviewSlider =
+        document.querySelector(".ls-grid");
+
+    const reviewSlides =
+        document.querySelectorAll(
+            ".ls-grid .ls-item"
+        );
+
+    const reviewDots =
+        document.querySelectorAll(
+            ".ls-slider-dot"
+        );
+
+    let currentReview = 0;
+
+
+    if (
+        reviewSlider &&
+        reviewSlides.length
+    ) {
+
+        function showReview(index) {
+
+            currentReview = index;
+
+
+            if (
+                window.innerWidth <= 900
+            ) {
+
+                reviewSlider.style.transform =
+                    `translateX(-${index * 100}%)`;
+
+            }
+            else {
+
+                reviewSlider.style.transform =
+                    "";
+
+            }
+
+
+            reviewDots.forEach(
+                function (dot, i) {
+
+                    dot.classList.toggle(
+                        "active",
+                        i === index
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* -----------------------------------------
+           DOT CLICKS
+        ----------------------------------------- */
+
+        reviewDots.forEach(
+            function (dot, index) {
+
+                dot.addEventListener(
+                    "click",
+                    function () {
+
+                        showReview(index);
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* -----------------------------------------
+           SWIPE SUPPORT
+        ----------------------------------------- */
+
+        let touchStartX = 0;
+
+
+        reviewSlider.addEventListener(
+            "touchstart",
+            function (event) {
+
+                touchStartX =
+                    event.changedTouches[0]
+                        .clientX;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        reviewSlider.addEventListener(
+            "touchend",
+            function (event) {
+
+                const touchEndX =
+                    event.changedTouches[0]
+                        .clientX;
+
+
+                const difference =
+                    touchStartX -
+                    touchEndX;
+
+
+                if (
+                    Math.abs(difference) <
+                    45
+                ) {
+
+                    return;
+
+                }
+
+
+                /* Swipe left */
+
+                if (
+                    difference > 0 &&
+                    currentReview <
+                    reviewSlides.length - 1
+                ) {
+
+                    showReview(
+                        currentReview + 1
+                    );
+
+                }
+
+
+                /* Swipe right */
+
+                else if (
+                    difference < 0 &&
+                    currentReview > 0
+                ) {
+
+                    showReview(
+                        currentReview - 1
+                    );
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* -----------------------------------------
+           WINDOW RESIZE
+        ----------------------------------------- */
+
+        window.addEventListener(
+            "resize",
             function () {
 
-                showReview(index);
+                if (
+                    window.innerWidth > 900
+                ) {
+
+                    reviewSlider.style.transform =
+                        "";
+
+                }
+                else {
+
+                    showReview(
+                        currentReview
+                    );
+
+                }
+
+            }
+        );
+
+
+        showReview(0);
+
+    }
+
+
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    const navbar =
+        document.getElementById("navbar");
+
+    const menuToggle =
+        document.getElementById(
+            "menu-toggle"
+        );
+
+    const navLinks =
+        document.getElementById(
+            "nav-links"
+        );
+
+
+    /* =====================================================
+       NAVBAR SCROLL EFFECT
+    ===================================================== */
+
+    if (navbar) {
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                if (
+                    window.scrollY > 10
+                ) {
+
+                    navbar.classList.add(
+                        "scrolled"
+                    );
+
+                }
+                else {
+
+                    navbar.classList.remove(
+                        "scrolled"
+                    );
+
+                }
 
             }
         );
 
     }
-);
 
 
-/* Swipe support */
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
-let touchStartX =
-    0;
+    if (
+        menuToggle &&
+        navLinks
+    ) {
 
+        menuToggle.addEventListener(
+            "click",
+            function () {
 
-reviewSlider.addEventListener(
-    "touchstart",
-    function (event) {
-
-        touchStartX =
-            event.changedTouches[0]
-                .clientX;
-
-    },
-    {
-        passive: true
-    }
-);
+                const isOpen =
+                    navLinks.classList.toggle(
+                        "active"
+                    );
 
 
-reviewSlider.addEventListener(
-    "touchend",
-    function (event) {
-
-        const touchEndX =
-            event.changedTouches[0]
-                .clientX;
+                menuToggle.classList.toggle(
+                    "active"
+                );
 
 
-        const difference =
-            touchStartX -
-            touchEndX;
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    isOpen
+                        ? "true"
+                        : "false"
+                );
+
+            }
+        );
 
 
-        if (
-            Math.abs(difference) < 45
-        ) {
+        /* Close after selecting link */
 
-            return;
+        navLinks
+            .querySelectorAll("a")
+            .forEach(
+                function (link) {
 
-        }
+                    link.addEventListener(
+                        "click",
+                        function () {
 
+                            navLinks.classList.remove(
+                                "active"
+                            );
 
-        /* Swipe left */
+                            menuToggle.classList.remove(
+                                "active"
+                            );
 
-        if (
-            difference > 0 &&
-            currentReview <
-            reviewSlides.length - 1
-        ) {
+                            menuToggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
 
-            showReview(
-                currentReview + 1
+                        }
+                    );
+
+                }
             );
 
-        }
-
-
-        /* Swipe right */
-
-        else if (
-            difference < 0 &&
-            currentReview > 0
-        ) {
-
-            showReview(
-                currentReview - 1
-            );
-
-        }
-
-    },
-    {
-        passive: true
     }
-);
 
-
-window.addEventListener(
-    "resize",
-    function () {
-
-        if (
-            window.innerWidth > 900
-        ) {
-
-            reviewSlider.style.transform =
-                "";
-
-        }
-        else {
-
-            showReview(
-                currentReview
-            );
-
-        }
-
-    }
-);
-
-
-showReview(0);
+});
 </script>
 </body>
 </html>
