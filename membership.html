@@ -18,11 +18,22 @@
 
     <div class="sm-modal" id="smModal" role="dialog" aria-modal="true">
 
-       
+
+        <!-- ================= CLOSE BUTTON ================= -->
+
+        <button
+            type="button"
+            class="sm-close"
+            id="smClose"
+            aria-label="Close membership plans">
+            &times;
+        </button>
+
 
         <div class="sm-modal-inner">
 
-            <!-- ===== Shared Header ===== -->
+
+            <!-- ================= SHARED HEADER ================= -->
 
             <div class="sm-header">
 
@@ -43,7 +54,7 @@
             </div>
 
 
-            <!-- ===== Plan Bar ===== -->
+            <!-- ================= PLAN BAR ================= -->
 
             <div class="sm-planbar" id="smPlanBar" style="display:none;">
 
@@ -58,7 +69,7 @@
             </div>
 
 
-            <!-- ===== Step Indicator — FREE ===== -->
+            <!-- ================= STEP INDICATOR — FREE ================= -->
 
             <div class="sm-stepper" id="smStepperFree" style="display:none;">
 
@@ -99,7 +110,7 @@
             </div>
 
 
-            <!-- ===== Step Indicator — PAID ===== -->
+            <!-- ================= STEP INDICATOR — PAID ================= -->
 
             <div class="sm-stepper" id="smStepperPaid" style="display:none;">
 
@@ -152,7 +163,9 @@
             </div>
 
 
-            <!-- ================= SCREEN 0: PLAN SELECTION ================= -->
+            <!-- =========================================================
+                 SCREEN 0: PLAN SELECTION
+            ========================================================== -->
 
             <div class="sm-screen" id="smScreenPlans">
 
@@ -206,21 +219,8 @@
                         </ul>
 
 
-                        <!-- NAVIGATE TO REAL MEMBERSHIP PAGE -->
-
-                        <button
-                            class="sm-plan-btn"
-                            data-select-plan="free"
-                            data-price="$0.00"
-                            data-label="Free Access"
-                            onclick="window.location.href='https://www.jobskillshare.org/membership#/membership'">
-
-                            Create Free Account
-
-                        </button>
 
                     </div>
-
 
 
                     <!-- ================= MONTHLY PLAN ================= -->
@@ -274,21 +274,7 @@
                         </ul>
 
 
-                        <!-- NAVIGATE TO REAL MEMBERSHIP PAGE -->
-
-                        <button
-                            class="sm-plan-btn"
-                            data-select-plan="monthly"
-                            data-price="$50.00/month"
-                            data-label="Premium Monthly"
-                            onclick="window.location.href='https://www.jobskillshare.org/membership#/membership'">
-
-                            Choose Premium Monthly
-
-                        </button>
-
                     </div>
-
 
 
                     <!-- ================= YEARLY PLAN ================= -->
@@ -348,23 +334,11 @@
                         </ul>
 
 
-                        <!-- NAVIGATE TO REAL MEMBERSHIP PAGE -->
 
-                        <button
-                            class="sm-plan-btn"
-                            data-select-plan="yearly"
-                            data-price="$549.00/year"
-                            data-label="Premium Yearly"
-                            onclick="window.location.href='https://www.jobskillshare.org/membership#/membership'">
-
-                            Choose Premium Yearly
-
-                        </button>
 
                     </div>
 
                 </div>
-
 
 
                 <!-- ================= TRUST BAR ================= -->
@@ -402,22 +376,45 @@
 </div>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
 
-    /* ==========================================
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    /* =====================================================
+       CLOSE BUTTON
+       Returns user to homepage
+    ===================================================== */
+
+    const closeButton =
+        document.getElementById('smClose');
+
+    if (closeButton) {
+
+        closeButton.addEventListener('click', function () {
+
+            window.location.href = 'index.html';
+
+        });
+
+    }
+
+
+    /* =====================================================
        ORIGINAL JOBSKILLSHARE MEMBERSHIP PAGE
-    ========================================== */
+    ===================================================== */
 
     const MEMBERSHIP_URL =
         'https://www.jobskillshare.org/membership#/membership';
 
 
-    /* ==========================================
+    /* =====================================================
        MEMBERSHIP PLAN BUTTONS
-    ========================================== */
+    ===================================================== */
 
     const planButtons =
         document.querySelectorAll('.sm-plan-btn');
@@ -430,12 +427,8 @@
             event.preventDefault();
 
             /*
-             * Navigate directly to the ORIGINAL
+             * Navigate directly to the original
              * JobSkillShare membership page.
-             *
-             * The #/membership hash is included so
-             * the original website can open its
-             * membership section/modal.
              */
 
             window.location.href = MEMBERSHIP_URL;
@@ -445,11 +438,12 @@
     });
 
 
-    /* ==========================================
+    /* =====================================================
        OPTIONAL: PLAN CARD CLICK
-       If you want ONLY the buttons clickable,
-       leave this section commented.
-    ========================================== */
+
+       Leave commented if you want only the blue
+       buttons to be clickable.
+    ===================================================== */
 
     /*
     document.querySelectorAll('.sm-plan-card').forEach(function (card) {
@@ -467,10 +461,9 @@
     });
     */
 
-    
-
 
 });
+
 </script>
 
 </body>

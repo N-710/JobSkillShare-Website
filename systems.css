@@ -159,14 +159,35 @@
   }
 
   /* ===== BREADCRUMB ===== */
-  .breadcrumb{
-    padding:16px 48px 0;
-    font-size:14px;
-    color:#7c8aa8;
-  }
-  .breadcrumb a{ color:var(--blue-600); text-decoration:none; font-weight:600; }
-  .breadcrumb span{ margin:0 6px; }
-  .breadcrumb .current{ color:var(--ink); font-weight:700; }
+/* ================= BREADCRUMB COLORS ================= */
+.breadcrumb{
+  padding: 20px 20px;
+}
+/* Clickable breadcrumb links */
+.breadcrumb a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+      font-size: 14px;
+}
+
+/* Clickable links on hover */
+.breadcrumb a:hover {
+    color: #084fc7;
+    text-decoration: underline;
+}
+
+/* Current page - NOT clickable */
+.breadcrumb strong {
+    color: #7f8da8;
+    font-weight: 600;
+      font-size: 14px;
+}
+
+/* › separators */
+.breadcrumb span {
+    color: #9aa6b8;
+}
 
   /* ===== HERO ===== */
   .hero-wrap{ padding:20px 48px 48px; }
@@ -384,11 +405,11 @@
     .hero-content{ padding:32px 16px 32px 32px; }
     h1{ font-size:32px; }
     .hero-desc{ font-size:13px; margin-bottom:10px; }
-    .stats-panel{ padding:10px 16px; margin-bottom:15px; }
+    .stats-panel{ padding:10px; margin-bottom:15px; }
     .stats-heading{ font-size:11px; margin-bottom:10px; }
     .stats-row{ gap:16px; }
     .stat-icon{ width:24px; height:24px; font-size:12px; }
-    .stat-value{ font-size:12px; }
+    .stat-value{ font-size:10px; }
     .stat-label{ font-size:10px; }
     .cta-row{ gap:10px; }
     .btn-get-started, .btn-login-outline{ padding:10px 16px; font-size:13px; }

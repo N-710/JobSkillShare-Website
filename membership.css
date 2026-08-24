@@ -86,7 +86,7 @@
 
     color: #4c647a;
 
-    font-size: 14px;
+    font-size: 28px;
 
     cursor: pointer;
 
@@ -703,4 +703,25 @@
         font-size: 17px;
     }
 
+}
+
+/* =====================================================
+   MEMBERSHIP CARDS - EQUAL HEIGHT WITHOUT EXTRA SPACE
+===================================================== */
+
+.sm-plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch; /* all cards equal height */
+}
+
+.sm-plan-card {
+    height: 100% !important;
+    min-height: 0 !important; /* removes forced large height */
+    box-sizing: border-box;
+}
+
+/* Bring trust bar closer to cards */
+.sm-trustbar {
+    margin-top: 30px !important;
 }

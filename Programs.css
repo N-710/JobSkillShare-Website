@@ -146,31 +146,34 @@ body {
    BREADCRUMB
 ========================================================= */
 
-.breadcrumb {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 24px 48px 0;
-  font-size: 14px;
-  color: #4C647A;
+/* ================= BREADCRUMB COLORS ================= */
+.breadcrumb{
+  padding: 20px 20px 0px 20px;
+}
+/* Clickable breadcrumb links */
+.breadcrumb a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+      font-size: 14px;
 }
 
-.breadcrumb-link {
-  color: #1e6fd9;
-  text-decoration: none;
+/* Clickable links on hover */
+.breadcrumb a:hover {
+    color: #084fc7;
+    text-decoration: underline;
 }
 
-.breadcrumb-link:hover {
-  text-decoration: underline;
+/* Current page - NOT clickable */
+.breadcrumb strong {
+    color: #7f8da8;
+    font-weight: 600;
+      font-size: 14px;
 }
 
-.breadcrumb-separator {
-  margin: 0 8px;
-  color: #9aa8bb;
-}
-
-.breadcrumb-current {
-  font-weight: 700;
-  color: #092F52;
+/* › separators */
+.breadcrumb span {
+    color: #9aa6b8;
 }
 
 

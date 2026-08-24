@@ -159,14 +159,39 @@
   }
 
   /* ===== BREADCRUMB ===== */
-  .breadcrumb{
-    padding:16px 48px 0;
-    font-size:14px;
-    color:#7c8aa8;
-  }
-  .breadcrumb a{ color:var(--blue-600); text-decoration:none; font-weight:600; }
-  .breadcrumb span{ margin:0 6px; }
-  .breadcrumb .current{ color:var(--ink); font-weight:700; }
+/* ================= BREADCRUMB COLORS ================= */
+
+.breadcrumb{
+  padding: 20px 20px;
+  
+}
+/* Clickable breadcrumb links */
+.breadcrumb a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+
+}
+
+/* Clickable links on hover */
+.breadcrumb a:hover {
+    color: #084fc7;
+    text-decoration: underline;
+}
+
+/* Current page - NOT clickable */
+.breadcrumb strong {
+    color: #7f8da8;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* › separators */
+.breadcrumb span {
+    color: #9aa6b8;
+}
+
 
   /* ===== HERO ===== */
   .hero-wrap{ padding:20px 48px 48px; }

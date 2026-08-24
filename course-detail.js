@@ -541,3 +541,100 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
 });
+
+/* =========================================================
+   AUTOMATIC DYNAMIC BREADCRUMB
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const breadcrumb = document.getElementById("dynamicBreadcrumb");
+    if (!breadcrumb) return;
+
+    const currentPage =
+        window.location.pathname.split("/").pop().toLowerCase();
+
+    const previousPage = document.referrer
+        ? new URL(document.referrer).pathname.split("/").pop().toLowerCase()
+        : "";
+
+    const currentHeading = document.querySelector("h1");
+
+    const currentName = currentHeading
+        ? currentHeading.textContent.trim()
+        : document.title;
+
+
+    /* -----------------------------------------
+       REMEMBER WHERE USER CAME FROM
+    ----------------------------------------- */
+
+    if (previousPage === "courses.html") {
+        sessionStorage.setItem("breadcrumbSource", "courses");
+    }
+
+    else if (previousPage === "programs.html") {
+        sessionStorage.setItem("breadcrumbSource", "programs");
+    }
+
+    else if (previousPage === "index.html" || previousPage === "") {
+        sessionStorage.setItem("breadcrumbSource", "home");
+    }
+
+
+    const source = sessionStorage.getItem("breadcrumbSource");
+
+
+    /* -----------------------------------------
+       HOME
+    ----------------------------------------- */
+
+    let html = `
+        <a href="index.html">Home</a>
+        <span>›</span>
+    `;
+
+
+    /* -----------------------------------------
+       OPENED FROM COURSES
+    ----------------------------------------- */
+
+    if (source === "courses") {
+
+        html += `
+            <a href="Courses.html">Courses</a>
+            <span>›</span>
+            <strong>${currentName}</strong>
+        `;
+    }
+
+
+    /* -----------------------------------------
+       OPENED FROM PROGRAMS
+    ----------------------------------------- */
+
+    else if (source === "programs") {
+
+        html += `
+            <a href="Programs.html">Certificate Programs</a>
+            <span>›</span>
+            <strong>${currentName}</strong>
+        `;
+    }
+
+
+    /* -----------------------------------------
+       OPENED FROM HOME
+    ----------------------------------------- */
+
+    else {
+
+        html += `
+            <strong>${currentName}</strong>
+        `;
+    }
+
+
+    breadcrumb.innerHTML = html;
+
+});
