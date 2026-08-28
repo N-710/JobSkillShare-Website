@@ -1949,160 +1949,202 @@ body {
 /* ==========================================
         FOOTER
 ========================================== */
-.site-footer{
-    width:100%;
-    padding:0px 80px 0 40px;
+
+.site-footer {
+    width: 100%;
+    padding: 0 80px 0 70px;
     background:
-         radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px) 0 0/22px 22px,
+        radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px) 0 0 / 22px 22px,
         #0A2540;
 }
 
-.footer-top{
-    max-width:1380px;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:1fr 1.8fr;
-    gap:40px;
-    padding-bottom:25px;
+
+/* ================= FOOTER TOP ================= */
+
+.footer-top {
+    max-width: 1380px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+    padding-bottom: 20px;
 }
 
-.footer-logo img{
-    width:192px;
-    height:128px;
-    filter:brightness(0) invert(1);
+
+/* ================= LEFT BRAND COLUMN ================= */
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 390px;
+    margin: 0;
 }
 
-.footer-heading{
-    font-size:24px;
-    font-weight:700;
-    color:#fff;
-    line-height:1.3;
-    margin:16px 0 14px;
-    max-width:380px;
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 12px;
+    padding: 0;
 }
 
-.footer-desc{
-    font-size:13px;        
-    color:#8FA2BE;
-    line-height:1.6;
-    max-width:400px;
-    margin-bottom:10px;
+.footer-logo img {
+    width: 200px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
-.footer-socials{
-    display:flex;
-    gap:12px;
+.footer-heading {
+    max-width: 360px;
+    margin: 0 0 2px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: left;
+    
 }
 
-.social-icon{
-    width:40px;
-    height:40px;
-    border-radius:10px;
-    background:rgba(255,255,255,.06);
-    color:#B7C2D6;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    transition:.3s;
+.footer-desc {
+        max-width: 280px;
+    margin: -40px 0 20px 0;   /* pulls text closer to logo */
+    color: #8FA2BE;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: left;
 }
 
-.social-icon:hover{
-    background:rgba(255,255,255,.14);
-    color:#fff;
+.footer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin: 0;
 }
 
-.footer-links-wrap{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:60px;
-    justify-content:end;
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.06);
+    color: #B7C2D6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.social-icon:hover {
+    background: rgba(255,255,255,.14);
+    color: #ffffff;
+}
+
+
+/* ================= FOOTER LINKS ================= */
+
+.footer-links-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    justify-content: end;
+    padding-top: 20px;
+}
+
+.footer-links,
+.footer-contact {
+    padding-top: 30px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-links h4,
-.footer-contact h4{
-    font-size:16px;        /* was 17px, and rendering larger due to weight */
-    font-weight:600;       /* was 700 — img1's headings look semi-bold, not heavy bold */
-    color:#fff;
-    margin-bottom:20px;
+.footer-contact h4 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-.footer-links{
-    display:flex;
-    flex-direction:column;
-    padding-top: 80px;
+.footer-links a {
+    width: fit-content;
+    margin-bottom: 18px;
+    color: #8FA2BE;
+    font-size: 13.5px;
+    text-decoration: none;
+    transition: .3s;
 }
 
-.footer-links a{
-    font-size:13.5px;      
-    color:#8FA2BE;
-    text-decoration:none;
-    margin-bottom:18px;   
-    transition:.3s;
-    width:fit-content;
+.footer-links a:hover {
+    color: #1DA1F2;
 }
 
-.footer-links a:hover{
-    color:#1DA1F2;
+
+/* ================= CONTACT ================= */
+
+.footer-contact p {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+    color: #8FA2BE;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
-.footer-contact{
-  padding-top: 80px;
+.footer-contact strong {
+    color: #ffffff;
 }
 
-.footer-contact p{
-    display:flex;
-    align-items:flex-start;
-    gap:8px;
-    font-size:13px;       
-    color:#8FA2BE;
-    line-height:1.5;    
-    margin-bottom:16px;
+.contact-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #1DA1F2;
 }
 
-.footer-contact strong{
-    color:#fff;
+
+/* ================= FOOTER BOTTOM ================= */
+
+.footer-bottom {
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 28px 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.contact-icon{
-    flex-shrink:0;
-    color:#1DA1F2;
-    margin-top:2px;
+.footer-bottom p {
+    color: #8FA2BE;
+    font-size: 14px;
 }
 
-.footer-bottom{
-    max-width:1380px;
-    margin:0 auto;
-    padding:28px 0;
-    border-top:1px solid rgba(255,255,255,.08);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.footer-bottom-links {
+    display: flex;
+    gap: 32px;
 }
 
-.footer-bottom p{
-    font-size:14px;
-    color:#8FA2BE;
+.footer-bottom-links a {
+    color: #8FA2BE;
+    font-size: 14px;
+    text-decoration: none;
+    transition: .3s;
 }
 
-.footer-bottom-links{
-    display:flex;
-    gap:32px;
+.footer-bottom-links a:hover {
+    color: #ffffff;
 }
 
-.footer-bottom-links a{
-    font-size:14px;
-    color:#8FA2BE;
-    text-decoration:none;
-    transition:.3s;
-}
-
-.footer-bottom-links a:hover{
-    color:#fff;
-}
-
-.affiliate a{
-    color: white;
+.affiliate a {
+    color: #ffffff;
     text-decoration: none;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -3252,7 +3294,7 @@ body {
 
         display: block;
 
-        padding-bottom: 20px;
+        padding-bottom: 10px;
     }
 
     .footer-logo img {

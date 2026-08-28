@@ -2790,7 +2790,7 @@
 
 .site-footer {
     width: 100%;
-    padding: 0 80px 0 40px;
+    padding: 0 80px 0 70px;
 
     background:
         radial-gradient(
@@ -2814,10 +2814,10 @@
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 1fr 1.8fr;
+    grid-template-columns: 1fr 2fr;
     gap: 40px;
 
-    padding-bottom: 25px;
+    padding-bottom: 20px;
 
     position: relative;
     z-index: 1;
@@ -2828,10 +2828,20 @@
         BRAND
 ========================================== */
 
-.footer-logo img {
-    width: 192px;
-    height: 128px;
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 12px;
+    padding: 0;
+    margin-top: 40px;
+}
 
+.footer-logo img {
+    width: 200px;
+    height: auto;
+    display: block;
+    object-fit: contain;
     filter: brightness(0) invert(1);
 }
 
@@ -2851,15 +2861,12 @@
 
 
 .footer-desc {
-    font-size: 14px;
-
-    color: #c5d8e8;
-
+          max-width: 280px;
+    margin: -40px 0 20px 0;   /* pulls text closer to logo */
+    color: #8FA2BE;
+    font-size: 15px;
     line-height: 1.6;
-
-    max-width: 400px;
-
-    margin-bottom: 10px;
+    text-align: left;
 }
 
 
@@ -2916,12 +2923,10 @@
 
 .footer-links-wrap {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 60px;
-
     justify-content: end;
+    padding-top: 20px;
 }
 
 

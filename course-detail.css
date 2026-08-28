@@ -375,14 +375,11 @@ button,input,select,textarea{font:inherit}
   letter-spacing:-2.8px;
 }
 
-.course-hero h1 span{
-  display:block;
-  margin-top:10px;
-
-  color:#174e86;
-
-  font-size:.56em;
-  letter-spacing:-1px;
+.course-hero h1 span {
+    font-size: 0.82em;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
 }
 
 .hero-lead{
@@ -3078,7 +3075,7 @@ button,input,select,textarea{font:inherit}
 
 .site-footer {
     width: 100%;
-    padding: 0 80px 0 40px;
+    padding: 0 80px 0 70px;
 
     background:
         radial-gradient(
@@ -3099,22 +3096,30 @@ button,input,select,textarea{font:inherit}
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: 1fr 1.8fr;
+    grid-template-columns: 1fr 2fr;
 
     gap: 40px;
 
-    padding-bottom: 25px;
+    padding-bottom: 20px;
 }
 
 
 /* ==========================================
    FOOTER LOGO
 ========================================== */
-
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 12px;
+    padding: 0;
+    margin-top: 40px;
+}
 .footer-logo img {
-    width: 192px;
-    height: 128px;
-
+      width: 200px;
+    height: auto;
+    display: block;
+    object-fit: contain;
     filter: brightness(0) invert(1);
 }
 
@@ -3137,14 +3142,12 @@ button,input,select,textarea{font:inherit}
 
 
 .footer-desc {
-    max-width: 400px;
-
-    margin-bottom: 10px;
-
+          max-width: 280px;
+    margin: -40px 0 20px 0;   /* pulls text closer to logo */
     color: #8FA2BE;
-
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.6;
+    text-align: left;
 }
 
 
@@ -3188,12 +3191,11 @@ button,input,select,textarea{font:inherit}
 ========================================== */
 
 .footer-links-wrap {
-    display: grid;
+      display: grid;
     grid-template-columns: repeat(3, 1fr);
-
     gap: 60px;
-
     justify-content: end;
+    padding-top: 20px;
 }
 
 
@@ -3768,4 +3770,38 @@ button,input,select,textarea{font:inherit}
         gap: 8px 15px;
     }
 
+}
+
+/* =========================================================
+   COMPACT COURSE DETAIL HERO
+========================================================= */
+
+.course-hero-inner {
+    min-height: 480px;
+    padding: 10px 40px 24px;
+    gap: 45px;
+    transform: translateY(-6px);
+}
+
+.course-hero h1 {
+    font-size: clamp(42px, 4.2vw, 64px);
+    line-height: 1.02;
+}
+
+.hero-kickers {
+    margin-bottom: 16px;
+}
+
+.hero-lead {
+    margin-top: 18px;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    margin-top: 22px;
+}
+
+.course-hero-visual {
+    min-height: 430px !important;
 }
