@@ -1486,6 +1486,7 @@
   grid-template-columns:repeat(3,1fr);
   gap:24px;
   margin-bottom:0;
+  align-items: stretch;
 }
 
 .challenge-card{
@@ -1499,6 +1500,8 @@
   overflow:hidden;
   box-shadow:0 12px 28px rgba(20,35,75,.07);
   transition:transform .2s ease, box-shadow .2s ease;
+      height: 100%;
+    min-height: 200px;
 }
 
 .challenge-card:hover{
@@ -1642,6 +1645,7 @@
   font-family:inherit;
   margin-top:auto;
   transition:.2s;
+
 }
 
 .challenge-toggle-btn:hover{
