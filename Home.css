@@ -3404,6 +3404,18 @@ body {
     isolation: isolate;
 }
 
+/* =========================================
+   ACTIVE NAVBAR LINK
+========================================= */
+
+.navbar .nav-links li a.active {
+    color: #1e6fd9;
+    font-weight: 700;
+}
+
+.navbar .nav-links li a.active::after {
+    transform: translateX(-50%) scaleX(1);
+}
 
 /* =========================================================
    MOBILE NAVBAR

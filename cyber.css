@@ -139,6 +139,19 @@
     background-color: #1858ad;
   }
 
+  /* =========================================
+   ACTIVE NAVBAR LINK
+========================================= */
+
+.navbar .nav-links li a.active {
+    color: #1e6fd9;
+    font-weight: 700;
+}
+
+.navbar .nav-links li a.active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
   @media (max-width: 900px) {
     .navbar {
       height: auto;
