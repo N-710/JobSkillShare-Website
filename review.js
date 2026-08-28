@@ -9,12 +9,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const stars = Array.from(document.querySelectorAll(".star"));
   const ratingBox = document.querySelector(".rating-box");
   const grid = document.getElementById("reviewsGrid");
+
   const programRadios = Array.from(
     document.querySelectorAll('input[name="program"]')
   );
+
   const ratingRadios = Array.from(
     document.querySelectorAll('input[name="rating"]')
   );
+
   const searchInput = document.getElementById("reviewSearch");
   const sortSelect = document.getElementById("reviewSort");
   const clearBtn = document.getElementById("clearFiltersBtn");
@@ -22,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const noResultsMsg = document.getElementById("noResultsMsg");
   const popup = document.getElementById("reviewPopup");
   const popupClose = document.getElementById("reviewPopupClose");
+
   const viewSubmittedReview = document.getElementById(
     "viewSubmittedReview"
   );
@@ -271,6 +275,23 @@ document.addEventListener("DOMContentLoaded", function () {
       course.toLowerCase();
 
 
+      /* WEB DEVELOPMENT */
+
+if (
+  value.includes("web development") ||
+  value.includes("frontend") ||
+  value.includes("front-end") ||
+  value.includes("html") ||
+  value.includes("css")
+) {
+
+  return "Web Development";
+
+}
+
+
+    /* CYBERSECURITY */
+
     if (
       value.includes("cyber") ||
       value.includes("security") ||
@@ -282,6 +303,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    /* CISCO */
+
     if (
       value.includes("cisco")
     ) {
@@ -290,6 +313,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
+    /* AZURE */
 
     if (
       value.includes("azure")
@@ -300,6 +325,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    /* AWS */
+
     if (
       value.includes("aws")
     ) {
@@ -308,6 +335,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
+    /* SYSTEMS ENGINEER */
 
     if (
       value.includes(
@@ -328,6 +357,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    /* IT SUPPORT TECHNICIAN */
+
     if (
       value.includes(
         "technician"
@@ -338,6 +369,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
+    /* IT SUPPORT */
 
     if (
       value.includes(
@@ -713,16 +746,16 @@ document.addEventListener("DOMContentLoaded", function () {
           return newest
 
             ? (
-              da < db
-                ? 1
-                : -1
-            )
+                da < db
+                  ? 1
+                  : -1
+              )
 
             : (
-              da > db
-                ? 1
-                : -1
-            );
+                da > db
+                  ? 1
+                  : -1
+              );
 
         }
       )
@@ -1289,6 +1322,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
 /* =========================================================
    MOBILE FILTER ACCORDION
 ========================================================= */
@@ -1310,6 +1344,7 @@ document.addEventListener("DOMContentLoaded", function () {
         title.addEventListener("click", function () {
 
             /* Only behave like dropdown on mobile */
+
             if (window.innerWidth > 640) {
                 return;
             }
@@ -1323,6 +1358,7 @@ document.addEventListener("DOMContentLoaded", function () {
              Close the other dropdown first.
              This keeps the filter area compact.
             */
+
             filterBoxes.forEach(function (otherBox) {
 
                 otherBox.classList.remove("mobile-open");
@@ -1331,6 +1367,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /* Toggle selected dropdown */
+
             if (!isAlreadyOpen) {
 
                 box.classList.add("mobile-open");
@@ -1346,6 +1383,7 @@ document.addEventListener("DOMContentLoaded", function () {
        Remove mobile accordion state when returning
        to desktop/tablet size.
     */
+
     window.addEventListener("resize", function () {
 
         if (window.innerWidth > 640) {
@@ -1359,9 +1397,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     });
-
-
-    
-    
 
 });
