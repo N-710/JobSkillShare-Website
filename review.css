@@ -170,13 +170,13 @@ body {
 .reviews-hero{
 
     width:100%;
-    min-height:580px;
+    min-height:500px;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
 
-    padding:50px 20px 70px;
+    padding:35px 20px 45px;
 
     background:
     radial-gradient(circle at top left,#2B5ECF 0%,transparent 40%),
@@ -233,7 +233,7 @@ body {
 
     font-size:14px;
 
-    margin-bottom:28px;
+    margin-bottom:20px;
 
     backdrop-filter:blur(8px);
 
@@ -241,7 +241,7 @@ body {
 
 .reviews-hero h1{
     color:white;
-    font-size:54px;
+    font-size:52px;
     font-weight:800;
     line-height:1.15;
     margin-bottom:12px;
@@ -249,7 +249,7 @@ body {
 
 .reviews-hero p{
     color:#D8E3F4;
-    font-size:16px;
+    font-size:14px;
     line-height:1.8;
     max-width:760px;
     margin:auto;
@@ -257,7 +257,7 @@ body {
 }
 
 .reviews-stats{
-    margin-top:30px;
+    margin-top:20px;
     display:flex;
     justify-content:center;
     gap:25px;
@@ -265,25 +265,25 @@ body {
 
 }
 .stat-card{
-    width:200px;
+    width:170px;
     background:rgba(255,255,255,.08);
     backdrop-filter:blur(12px);
     border:1px solid rgba(255,255,255,.08);
     border-radius:18px;
-    padding:15px;
+    padding:12px;
 }
 .stat-card h2{
     color:white;
-    font-size:25px;
+    font-size:20px;
     margin-bottom:4px;
 }
 .stat-card span{
     color:#D6E0F2;
-    font-size:15px;
+    font-size:13px;
 }
 
 .hero-buttons{
-    margin-top:35px;
+    margin-top:24px;
     display:flex;
     justify-content:center;
     gap:20px;
@@ -2609,6 +2609,7 @@ body {
    MOBILE FOOTER - COMPACT + CENTERED
 ===================================================== */
 
+
 @media (max-width: 600px) {
 
     .site-footer {
@@ -2662,11 +2663,11 @@ body {
 
 
     .footer-logo img {
-        width: 135px;
+        width: 160px;
         height: auto;
 
         display: block;
-
+        margin-top: -20px;
         margin: 0 auto;
     }
 
@@ -2686,7 +2687,7 @@ body {
     .footer-desc {
         max-width: 340px;
 
-        margin: 0 auto 14px;
+        margin: -18px auto 14px;
 
         font-size: 12px;
         line-height: 1.55;
@@ -2721,21 +2722,17 @@ body {
     /* ================= FOOTER LINKS ================= */
 
     .footer-links-wrap {
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        gap: 20px;
-
+         width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 22px;
+        row-gap: 28px;
+        align-items: start;
         margin: 0;
         padding: 0;
     }
 
-
-    .footer-links,
-    .footer-contact {
+        .footer-links {
         width: 100%;
 
         display: flex;
@@ -2748,39 +2745,97 @@ body {
         text-align: center;
     }
 
-
-    .footer-links h4,
-    .footer-contact h4 {
+        .footer-links h4 {
         margin: 0 0 10px;
-
         font-size: 14px;
-
         text-align: center;
     }
-
 
     .footer-links a {
         width: auto;
-
         margin: 0 0 9px;
 
         font-size: 11.5px;
+        line-height: 1.4;
+
+        text-align: center;
+    }
+}
+
+    @media (max-width: 600px) {
+
+    .footer-links-wrap {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        column-gap: 22px;
+        row-gap: 22px;
+
+        align-items: start;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-links {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 0;
+        margin: 0;
 
         text-align: center;
     }
 
+    .footer-links h4 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        text-align: center;
+    }
 
-    /* ================= CONTACT ================= */
+    .footer-links a {
+        width: auto;
+        margin: 0 0 9px;
 
-    .footer-contact p {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        font-size: 11.5px;
+        line-height: 1.4;
+
+        text-align: center;
+    }
+
+    .footer-contact {
+        grid-column: 1 / -1;
 
         width: 100%;
-        max-width: 300px;
 
-        gap: 7px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 0;
+        margin: 0;
+                margin-top: 2px;
+        padding-bottom: 12px;
+
+        text-align: center;
+    }
+
+    .footer-contact h4 {
+        margin: 0 0 12px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+        .footer-contact p {
+        justify-content: center;
+
+        width: 100%;
+        max-width: 280px;
 
         margin: 0 auto 10px;
 
@@ -2806,6 +2861,8 @@ body {
         padding: 16px 0;
 
         text-align: center;
+                margin-top: 4px;
+
     }
 
 
@@ -2820,11 +2877,120 @@ body {
 
 
     .footer-bottom-links {
+                flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 12px;
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   SUCCESS STORIES MOBILE SLIDER
+========================================================= */
+
+.story-slider-controls {
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    .success-container {
+        overflow: hidden;
+    }
+
+    .stories-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+
+        width: 100%;
+        gap: 0 !important;
+        align-items: flex-start;
+        overflow: hidden;
+    }
+
+    .story-card {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
+        padding: 20px 16px;
+        transition: transform 0.35s ease;
+        height: auto;
+        min-height: 0;
+    }
+
+    .story-slider-controls {
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
+        align-items: center;
 
-        gap: 8px 15px;
+        gap: 14px;
+        margin-top: 18px;
+    }
+
+    .story-arrow {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: none;
+        border-radius: 50%;
+
+        background: #2E6CF6;
+        color: #ffffff;
+
+        font-size: 20px;
+        font-weight: 700;
+
+        cursor: pointer;
+    }
+
+    .story-arrow:disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
+
+    /* Profile icon + name/course beside each other */
+    .story-card {
+        position: relative;
+        padding: 20px 16px;
+    }
+
+    .story-avatar {
+        float: left;
+
+        width: 62px;
+        height: 62px;
+
+        margin: 0 14px 12px 0;
+
+        font-size: 30px;
+    }
+
+    .story-content h3 {
+        font-size: 20px;
+        line-height: 1.2;
+
+        margin: 4px 0 5px;
+        padding-top: 4px;
+    }
+
+    .story-content h4 {
+        font-size: 14px;
+        line-height: 1.35;
+
+        margin-bottom: 18px;
+    }
+
+    /* Start badges below the profile row */
+    .story-info {
+        clear: both;
+        padding-top: 4px;
     }
 
 }

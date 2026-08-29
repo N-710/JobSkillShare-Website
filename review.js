@@ -1399,3 +1399,77 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+/* =========================================================
+   SUCCESS STORIES MOBILE SLIDER
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const storyGrid = document.querySelector(".stories-grid");
+    const storyCards = document.querySelectorAll(".story-card");
+
+    const prevBtn = document.querySelector(".story-prev");
+    const nextBtn = document.querySelector(".story-next");
+
+    if (
+        !storyGrid ||
+        storyCards.length === 0 ||
+        !prevBtn ||
+        !nextBtn
+    ) {
+        return;
+    }
+
+    let currentStory = 0;
+
+
+    function updateStorySlider() {
+
+        storyCards.forEach(function (card) {
+
+            card.style.transform =
+                `translateX(-${currentStory * 100}%)`;
+
+        });
+
+
+        prevBtn.disabled =
+            currentStory === 0;
+
+
+        nextBtn.disabled =
+            currentStory === storyCards.length - 1;
+
+    }
+
+
+    nextBtn.addEventListener("click", function () {
+
+        if (currentStory < storyCards.length - 1) {
+
+            currentStory++;
+
+            updateStorySlider();
+
+        }
+
+    });
+
+
+    prevBtn.addEventListener("click", function () {
+
+        if (currentStory > 0) {
+
+            currentStory--;
+
+            updateStorySlider();
+
+        }
+
+    });
+
+
+    updateStorySlider();
+
+});

@@ -393,3 +393,74 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+/* =========================================
+   SKILLS CAROUSEL
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const track = document.querySelector(".skills-track-wrap");
+    const cards = document.querySelectorAll(".skill-card");
+
+    const prevBtn = document.getElementById("skillsPrev");
+    const nextBtn = document.getElementById("skillsNext");
+
+    if (!track || !cards.length || !prevBtn || !nextBtn) return;
+
+    let currentCard = 0;
+
+    function isMobile() {
+        return window.innerWidth <= 900;
+    }
+
+    function updateMobileSlider() {
+
+        if (!isMobile()) return;
+
+        cards.forEach((card, index) => {
+            card.style.transform =
+                `translateX(-${currentCard * 100}%)`;
+        });
+
+        prevBtn.disabled = currentCard === 0;
+        nextBtn.disabled = currentCard === cards.length - 1;
+    }
+
+    prevBtn.addEventListener("click", function () {
+
+        if (!isMobile()) return;
+
+        if (currentCard > 0) {
+            currentCard--;
+            updateMobileSlider();
+        }
+
+    });
+
+    nextBtn.addEventListener("click", function () {
+
+        if (!isMobile()) return;
+
+        if (currentCard < cards.length - 1) {
+            currentCard++;
+            updateMobileSlider();
+        }
+
+    });
+
+    window.addEventListener("resize", function () {
+
+        if (isMobile()) {
+            updateMobileSlider();
+        } else {
+            cards.forEach(card => {
+                card.style.transform = "";
+            });
+        }
+
+    });
+
+    updateMobileSlider();
+
+});

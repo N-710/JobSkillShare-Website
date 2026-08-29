@@ -2820,11 +2820,11 @@ svg {
 
 
     .footer-logo img {
-        width: 135px;
+        width: 160px;
         height: auto;
 
         display: block;
-
+        margin-top: -20px;
         margin: 0 auto;
     }
 
@@ -2844,7 +2844,7 @@ svg {
     .footer-desc {
         max-width: 340px;
 
-        margin: 0 auto 14px;
+        margin: -18px auto 14px;
 
         font-size: 12px;
         line-height: 1.55;
@@ -2879,21 +2879,17 @@ svg {
     /* ================= FOOTER LINKS ================= */
 
     .footer-links-wrap {
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        gap: 20px;
-
+         width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 22px;
+        row-gap: 28px;
+        align-items: start;
         margin: 0;
         padding: 0;
     }
 
-
-    .footer-links,
-    .footer-contact {
+        .footer-links {
         width: 100%;
 
         display: flex;
@@ -2906,39 +2902,97 @@ svg {
         text-align: center;
     }
 
-
-    .footer-links h4,
-    .footer-contact h4 {
+        .footer-links h4 {
         margin: 0 0 10px;
-
         font-size: 14px;
-
         text-align: center;
     }
-
 
     .footer-links a {
         width: auto;
-
         margin: 0 0 9px;
 
         font-size: 11.5px;
+        line-height: 1.4;
+
+        text-align: center;
+    }
+}
+
+    @media (max-width: 600px) {
+
+    .footer-links-wrap {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        column-gap: 22px;
+        row-gap: 22px;
+
+        align-items: start;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-links {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 0;
+        margin: 0;
 
         text-align: center;
     }
 
+    .footer-links h4 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        text-align: center;
+    }
 
-    /* ================= CONTACT ================= */
+    .footer-links a {
+        width: auto;
+        margin: 0 0 9px;
 
-    .footer-contact p {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        font-size: 11.5px;
+        line-height: 1.4;
+
+        text-align: center;
+    }
+
+    .footer-contact {
+        grid-column: 1 / -1;
 
         width: 100%;
-        max-width: 300px;
 
-        gap: 7px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 0;
+        margin: 0;
+                margin-top: 2px;
+        padding-bottom: 12px;
+
+        text-align: center;
+    }
+
+    .footer-contact h4 {
+        margin: 0 0 12px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+        .footer-contact p {
+        justify-content: center;
+
+        width: 100%;
+        max-width: 280px;
 
         margin: 0 auto 10px;
 
@@ -2964,6 +3018,8 @@ svg {
         padding: 16px 0;
 
         text-align: center;
+                margin-top: 4px;
+
     }
 
 
@@ -2978,11 +3034,12 @@ svg {
 
 
     .footer-bottom-links {
-        display: flex;
+                flex-direction: row;
         justify-content: center;
-        flex-wrap: wrap;
-
-        gap: 8px 15px;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 12px;
+        width: 100%;
     }
 
 }
